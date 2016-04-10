@@ -11,15 +11,15 @@ import iCal.data.Event;
 @ManagedBean
 @SessionScoped
 public class iCalBean {
-	//Data
+	// Data
 	private List<Event> eventList = new LinkedList<>();
 	private Event eventSample = new Event();
 
-	//Settery Gettery Konstruktor
-	public iCalBean(){
-		
+	// Settery Gettery Konstruktor
+	public iCalBean() {
+
 	}
-	
+
 	public List<Event> getEventList() {
 		return eventList;
 	}
@@ -35,7 +35,7 @@ public class iCalBean {
 	public void setEventSample(Event eventSample) {
 		this.eventSample = eventSample;
 	}
-		
-	//Akcje
-	
+
+	// Akcje
+
 }
