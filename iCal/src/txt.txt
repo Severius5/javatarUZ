@@ -1,2 +1,6 @@
 .Content-Type: application/octet-stream
 Content-Disposition: attachment; filename="picture.png"
+
+ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+HttpServletRequest request = (HttpServletRequest)context.getRequest();
+HttpServletResponse response = (HttpServletResponse)context.getResponse();
