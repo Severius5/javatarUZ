@@ -8,6 +8,9 @@
 <h:body>
 		<h:outputText value="Hi" /> 
 		<h:form>
+			<h:inputText maxlength="7" value="#{iCalBean.eventSample.eventTitle}"/><br/>
+			<h:inputText value="#{iCalBean.eventSample.description}"/><br/>
+			<h:inputText value="#{iCalBean.eventSample.location}"/><br/>
 			<h:commandButton action="#{iCalBean.doAction()}" value="Do" />
 		</h:form>
 </h:body> 

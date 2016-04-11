@@ -1,10 +1,16 @@
 package iCal.beans;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import iCal.data.Event;
 
@@ -37,5 +43,18 @@ public class iCalBean {
 	}
 
 	// Akcje
-
+	public String doAction() throws IOException {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) context.getRequest();
+		HttpServletResponse response = (HttpServletResponse) context.getResponse();
+		response.setContentType("application/force-download");
+		response.setHeader("Content-Disposition", "attachment;filename=downloadfilename.txt");
+		ServletOutputStream out = response.getOutputStream();
+		out.println(request.getRequestedSessionId());
+		out.println(eventSample.getEventTitle());
+		out.println(eventSample.getDescription());
+		out.println(eventSample.getLocation());
+		out.close();
+		return "#";
+	}
 }
