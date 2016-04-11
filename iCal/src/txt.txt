@@ -4,3 +4,16 @@ Content-Disposition: attachment; filename="picture.png"
 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 HttpServletRequest request = (HttpServletRequest)context.getRequest();
 HttpServletResponse response = (HttpServletResponse)context.getResponse();
+
+public String doAction() throws IOException{
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletRequest request = (HttpServletRequest)context.getRequest();
+		HttpServletResponse response = (HttpServletResponse)context.getResponse();
+		response.setContentType("application/force-download");
+		response.setHeader("Content-Disposition",
+				"attachment;filename=downloadfilename.txt");
+		ServletOutputStream out = response.getOutputStream();
+		out.println(request.getRequestedSessionId());
+		out.close();
+		return "#";
+	}
