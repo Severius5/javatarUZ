@@ -1,5 +1,7 @@
 package iCal.beans;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,10 +16,20 @@ public class iCalBean {
 	// Data
 	private List<Event> eventList = new LinkedList<>();
 	private Event eventSample = new Event();
+	private Date date;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		System.out.println(date);
+		this.date = date;
+	}
 
 	// Settery Gettery Konstruktor
 	public iCalBean() {
-
+		eventList.add(new Event());
 	}
 
 	public List<Event> getEventList() {
@@ -38,4 +50,16 @@ public class iCalBean {
 
 	// Akcje
 
+	public void addEvent() {
+		if (eventList.add(eventSample)) {
+			clearEventSample();
+		} else {
+			System.out.println("[ERROR] Nie dodano eventu");
+			clearEventSample();
+		}
+	}
+
+	private void clearEventSample() {
+		eventSample = new Event();
+	}
 }
