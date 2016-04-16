@@ -11,7 +11,9 @@
 	<div id="addNew">
 		<fieldset>
 			<legend align="center">Generator iCal</legend>
-			<h:form>
+			<p:commandButton id="newButton" value="Nowy Event" type="button" styleClass="ui-mini"/>
+   			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
+        		<h:form>
 				Title: <h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" maxlength="32"/><br/>
 				Every day: <h:selectBooleanCheckbox value="#{iCalBean.eventSample.everyDay}" required="true" /><br/>
 				Date start:<br/>
@@ -28,6 +30,7 @@
        			
 				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" />
 			</h:form>
+			</p:overlayPanel>
 		</fieldset>
 	</div>
 	
