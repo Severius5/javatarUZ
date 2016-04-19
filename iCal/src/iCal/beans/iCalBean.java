@@ -68,4 +68,8 @@ public class iCalBean {
 		System.out.println("czesc");
 		
 	}
+	
+	public void deleteEvent(Event event){
+		eventList.remove(event);
+	}
 }

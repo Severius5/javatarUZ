@@ -18,9 +18,7 @@
    			 padding: 8px;
    			 text-align: left;
    			 border-bottom: 1px solid #ddd;
-		}
-
-tr:hover{background-color:#f5f5f5}
+		}tr:hover{background-color:#f5f5f5}
 	</style>
 </h:head> 
 <h:body>
@@ -62,6 +60,7 @@ tr:hover{background-color:#f5f5f5}
 				<td>Description</td>
 				<td>Location</td>
 				<td>Copy</td>
+				<td>Delete</td>
 			</tr>
 			<c:forEach var="event" items="#{iCalBean.eventList}">
 				<tr>
@@ -72,6 +71,7 @@ tr:hover{background-color:#f5f5f5}
 					<td><h:outputText value="#{event.description}" /></td>
 					<td><h:outputText value="#{event.location}" /></td>
 					<td><h:form><h:commandButton action="#{iCalBean.copyEvent(event)}" value="C" /></h:form></td>
+					<td><h:form><h:commandButton action="#{iCalBean.deleteEvent(event)}" value="D" /></h:form></td>
 				</tr>
 			</c:forEach>
 			</table>
