@@ -62,4 +62,10 @@ public class iCalBean {
 	private void clearEventSample() {
 		eventSample = new Event();
 	}
+	
+	public void copyEvent(Event event){
+		eventList.add(new Event(event));
+		System.out.println("czesc");
+		
+	}
 }

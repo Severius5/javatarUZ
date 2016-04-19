@@ -29,6 +29,15 @@ public class Event {
 		setDescription(description);
 		setLocation(location);
 	}
+	
+	public Event(Event event){
+		setEventTitle(event.getEventTitle());
+		setEveryDay(event.isEveryDay());
+		setDateStart(event.getDateStart());
+		setDateEnd(event.getDateEnd());
+		setDescription(event.getDescription());
+		setLocation(event.getLocation());
+	}
 
 	public String getEventTitle() {
 		return eventTitle;
