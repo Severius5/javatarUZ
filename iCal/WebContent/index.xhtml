@@ -30,8 +30,8 @@
         		<h:form>
 				Title: <h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" maxlength="32"/><br/>
 				Every day: <h:selectBooleanCheckbox value="#{iCalBean.eventSample.everyDay}" required="true" /><br/>
-				Date start:<br/>
-				Date end:<br/>
+				Date start: <p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" /><br/>
+				Date end: <p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" /><br/>
 				Location: <h:inputText value="#{iCalBean.eventSample.location}" required="true" maxlength="32"/><br/>
 				Description:
 				<br/>
@@ -40,7 +40,7 @@
 				<br/>
 				<br/>
 				<p:outputLabel for="datetime" value="Datetime:" />
-       			<p:calendar id="datetime" value="#{iCalBean.date}" pattern="MM/dd/yyyy HH:mm" />
+       			<p:calendar id="datetime" value="#{iCalBean.date}" pattern="dd/MM/yyyy HH:mm" />
        			
 				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" />
 			</h:form>
