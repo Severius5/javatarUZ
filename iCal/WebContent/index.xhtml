@@ -60,7 +60,7 @@
     			</h:column>
     			<h:column>
       			  	<f:facet name="header">Every day</f:facet>
-    				<h:inputText value="#{event.everyDay}" rendered="#{event.editable}" />
+    				<h:selectBooleanCheckbox value="#{event.everyDay}" rendered="#{event.editable}" />
     				<h:outputText value="#{event.everyDay}" rendered="#{not event.editable}" />
     			</h:column>
     			<h:column>
