@@ -2,6 +2,7 @@ package iCal.beans;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.EventListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,17 +60,26 @@ public class iCalBean {
 		}
 	}
 
-	private void clearEventSample() {
+	public void clearEventSample() {
 		eventSample = new Event();
 	}
 	
 	public void copyEvent(Event event){
 		eventList.add(new Event(event));
-		System.out.println("czesc");
-		
 	}
 	
 	public void deleteEvent(Event event){
 		eventList.remove(event);
+	}
+	
+	//Edit button methods
+	public String saveAction(Event event) {
+		event.setEditable(false);
+		return null;
+	}
+	
+	public String editAction(Event event) {
+		event.setEditable(true);
+		return null;
 	}
 }

@@ -51,30 +51,53 @@
 	<div id="viewEvents">
 		<fieldset>
 			<legend align="center">Event List</legend>
-			<table border="1" align="center" >
-			<tr>
-				<td>Title</td>
-				<td>Every day</td>
-				<td>Date Start</td>
-				<td>Date End</td>
-				<td>Description</td>
-				<td>Location</td>
-				<td>Copy</td>
-				<td>Delete</td>
-			</tr>
-			<c:forEach var="event" items="#{iCalBean.eventList}">
-				<tr>
-					<td><h:outputText value="#{event.eventTitle}" /></td>
-					<td><h:outputText value="#{event.everyDay}" /></td>
-					<td><h:outputText value="#{event.dateStart}" />t</td>
-					<td><h:outputText value="#{event.dateEnd}" /></td>
-					<td><h:outputText value="#{event.description}" /></td>
-					<td><h:outputText value="#{event.location}" /></td>
-					<td><h:form><h:commandButton action="#{iCalBean.copyEvent(event)}" value="C" /></h:form></td>
-					<td><h:form><h:commandButton action="#{iCalBean.deleteEvent(event)}" value="D" /></h:form></td>
-				</tr>
-			</c:forEach>
-			</table>
+			<h:form>
+			<h:dataTable value="#{iCalBean.eventList}" var="event">
+				<h:column>
+        			<f:facet name="header">Title</f:facet>
+    				<h:inputText value="#{event.eventTitle}" ize="10" rendered="#{event.editable}" />
+    				<h:outputText value="#{event.eventTitle}" rendered="#{not event.editable}" />
+    			</h:column>
+    			<h:column>
+      			  	<f:facet name="header">Every day</f:facet>
+    				<h:inputText value="#{event.everyDay}" rendered="#{event.editable}" />
+    				<h:outputText value="#{event.everyDay}" rendered="#{not event.editable}" />
+    			</h:column>
+    			<h:column>
+        			<f:facet name="header">Date start</f:facet>
+    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable}" />
+    				<h:outputText value="TODO" rendered="#{event.editable}" />
+    			</h:column>
+    			<h:column>
+      			  	<f:facet name="header">Date end</f:facet>
+ 		   			<h:outputText value="#{event.dateEnd}" rendered="#{not event.editable}" />
+    				<h:outputText value="TODO" rendered="#{event.editable}" />
+    			</h:column>
+    			<h:column>
+      			  	<f:facet name="header">Description</f:facet>
+    				<h:inputText value="#{event.description}" rendered="#{event.editable}" />
+    				<h:outputText value="#{event.description}" rendered="#{not event.editable}" />
+    			</h:column>
+    			<h:column>
+       			 	<f:facet name="header">Location</f:facet>
+    				<h:inputText value="#{event.location}" rendered="#{event.editable}" />
+    				<h:outputText value="#{event.location}" rendered="#{not event.editable}" />
+    			</h:column>
+    			<h:column>
+        			<f:facet name="header">Copy</f:facet>
+    				<h:commandButton action="#{iCalBean.copyEvent(event)}" value="C" />
+    			</h:column>
+    			<h:column>
+        			<f:facet name="header">Delete</f:facet>
+    				<h:commandButton action="#{iCalBean.deleteEvent(event)}" value="D" />
+    			</h:column>
+    			<h:column>
+        			<f:facet name="header">Edit</f:facet>
+        			<h:commandButton action="#{iCalBean.saveAction(event)}" value="Save" rendered="#{event.editable}"/>
+    				<h:commandButton action="#{iCalBean.editAction(event)}" value="Edit" rendered="#{not event.editable}"/>
+    			</h:column>
+			</h:dataTable>
+			</h:form>
 		</fieldset>
 	</div>
 </h:body> 

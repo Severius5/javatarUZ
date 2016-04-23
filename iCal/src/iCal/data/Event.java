@@ -10,6 +10,7 @@ public class Event {
 	private LocalDateTime dateEnd;
 	private String description;
 	private String location;
+	private boolean editable;
 
 	public Event() {
 		setEventTitle("Title");
@@ -87,4 +88,11 @@ public class Event {
 		this.location = location;
 	}
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 }
