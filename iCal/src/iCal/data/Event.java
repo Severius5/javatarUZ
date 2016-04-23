@@ -1,27 +1,29 @@
 package iCal.data;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Event {
 	private String eventTitle;
 	private boolean everyDay;
 	// Data format 2007-12-03T10:15:30.
-	private LocalDateTime dateStart;
-	private LocalDateTime dateEnd;
+	private Date dateStart;
+	private Date dateEnd;
 	private String description;
 	private String location;
 	private boolean editable;
-
+	private Calendar currentDate;
+	
 	public Event() {
 		setEventTitle("Title");
 		setEveryDay(false);
-		setDateStart(LocalDateTime.now());
-		setDateEnd(LocalDateTime.of(2099, 1, 1, 1, 11, 1, 1));
+		setDateStart(getCurrentDate());
+		setDateEnd(getCurrentDate());
 		setDescription("Desc about this beautiful day.");
 		setLocation("Location");
 	}
 
-	public Event(String eventTittle, boolean everyDay, LocalDateTime dateStart, LocalDateTime dateEnd,
+	public Event(String eventTittle, boolean everyDay, Date dateStart, Date dateEnd,
 			String description, String location) {
 		setEventTitle(eventTittle);
 		setEveryDay(everyDay);
@@ -56,19 +58,19 @@ public class Event {
 		this.everyDay = everyDay;
 	}
 
-	public LocalDateTime getDateStart() {
+	public Date getDateStart() {
 		return dateStart;
 	}
 
-	public void setDateStart(LocalDateTime dateStart) {
+	public void setDateStart(Date dateStart) {
 		this.dateStart = dateStart;
 	}
 
-	public LocalDateTime getDateEnd() {
+	public Date getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(LocalDateTime dateEnd) {
+	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 
@@ -95,4 +97,12 @@ public class Event {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
+
+	public Date getCurrentDate() {
+		currentDate = Calendar.getInstance();
+		Date currDate = currentDate.getTime();
+		return currDate;
+	}
+	
+	
 }

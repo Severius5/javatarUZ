@@ -40,7 +40,7 @@
 				<br/>
 				<br/>
 				<p:outputLabel for="datetime" value="Datetime:" />
-       			<p:calendar id="datetime" value="#{iCalBean.date}" pattern="MM/dd/yyyy HH:mm:ss" />
+       			<p:calendar id="datetime" value="#{iCalBean.date}" pattern="MM/dd/yyyy HH:mm" />
        			
 				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" />
 			</h:form>
@@ -65,13 +65,17 @@
     			</h:column>
     			<h:column>
         			<f:facet name="header">Date start</f:facet>
-    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable}" />
-    				<h:outputText value="TODO" rendered="#{event.editable}" />
+    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable}" >
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT+2"/>
+					</h:outputText>
+    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable}"/>
     			</h:column>
     			<h:column>
       			  	<f:facet name="header">Date end</f:facet>
- 		   			<h:outputText value="#{event.dateEnd}" rendered="#{not event.editable}" />
-    				<h:outputText value="TODO" rendered="#{event.editable}" />
+					<h:outputText value="#{event.dateEnd}" rendered="#{not event.editable}" >
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT+2"/>
+					</h:outputText>
+    				<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable}"/>
     			</h:column>
     			<h:column>
       			  	<f:facet name="header">Description</f:facet>
@@ -93,8 +97,8 @@
     			</h:column>
     			<h:column>
         			<f:facet name="header">Edit</f:facet>
-        			<h:commandButton action="#{iCalBean.saveAction(event)}" value="Save" rendered="#{event.editable}"/>
-    				<h:commandButton action="#{iCalBean.editAction(event)}" value="Edit" rendered="#{not event.editable}"/>
+        			<h:commandButton action="#{iCalBean.saveEventEdit(event)}" value="Save" rendered="#{event.editable}"/>
+    				<h:commandButton action="#{iCalBean.editEventEdit(event)}" value="Edit" rendered="#{not event.editable}"/>
     			</h:column>
 			</h:dataTable>
 			</h:form>
