@@ -1,6 +1,5 @@
 package iCal.beans;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,6 +68,10 @@ public class iCalBean {
 	
 	public void deleteEvent(Event event){
 		eventList.remove(event);
+	}
+	
+	public void clearEvents(){
+		eventList.clear();
 	}
 	
 	//Edit button methods

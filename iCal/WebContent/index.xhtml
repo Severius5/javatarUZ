@@ -41,10 +41,12 @@
 				<br/>
 				<p:outputLabel for="datetime" value="Datetime:" />
        			<p:calendar id="datetime" value="#{iCalBean.date}" pattern="dd/MM/yyyy HH:mm" />
-       			
 				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" />
-			</h:form>
+				</h:form>
 			</p:overlayPanel>
+			
+			<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="ui-mini" ajax="false"/>
+			
 		</fieldset>
 	</div>
 	
