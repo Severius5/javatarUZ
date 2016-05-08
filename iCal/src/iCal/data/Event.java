@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Event {
 	private String eventTitle;
-	private boolean everyDay;
+	private boolean wholeDay;
 	// Data format 2007-12-03T10:15:30.
 	private Date dateStart;
 	private Date dateEnd;
@@ -16,17 +16,17 @@ public class Event {
 	
 	public Event() {
 		setEventTitle("Title");
-		setEveryDay(false);
+		setWholeDay(false);
 		setDateStart(getCurrentDate());
 		setDateEnd(getCurrentDate());
 		setDescription("Desc about this beautiful day.");
 		setLocation("Location");
 	}
 
-	public Event(String eventTittle, boolean everyDay, Date dateStart, Date dateEnd,
+	public Event(String eventTittle, boolean wholeDay, Date dateStart, Date dateEnd,
 			String description, String location) {
 		setEventTitle(eventTittle);
-		setEveryDay(everyDay);
+		setWholeDay(wholeDay);
 		setDateStart(dateStart);
 		setDateEnd(dateEnd);
 		setDescription(description);
@@ -35,7 +35,7 @@ public class Event {
 	
 	public Event(Event event){
 		setEventTitle(event.getEventTitle());
-		setEveryDay(event.isEveryDay());
+		setWholeDay(event.isWholeDay());
 		setDateStart(event.getDateStart());
 		setDateEnd(event.getDateEnd());
 		setDescription(event.getDescription());
@@ -50,12 +50,12 @@ public class Event {
 		this.eventTitle = eventTitle;
 	}
 
-	public boolean isEveryDay() {
-		return everyDay;
+	public boolean isWholeDay() {
+		return wholeDay;
 	}
 
-	public void setEveryDay(boolean everyDay) {
-		this.everyDay = everyDay;
+	public void setWholeDay(boolean wholeDay) {
+		this.wholeDay = wholeDay;
 	}
 
 	public Date getDateStart() {
@@ -103,6 +103,5 @@ public class Event {
 		Date currDate = currentDate.getTime();
 		return currDate;
 	}
-	
 	
 }
