@@ -24,7 +24,7 @@
 <h:body>
 	<div id="addNew">
 		<fieldset>
-		<h:form>
+		<h:form id="addingNew">
 			<legend align="center">Generator iCal</legend>
 			<p:commandButton id="newButton" value="Nowy Event" type="button" styleClass="ui-mini"/>
    			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
@@ -60,7 +60,10 @@
 				<br/>
 				<br/>
 				<br/>
-				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" />
+				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" >
+					<p:ajax update="viewing"/>
+				</h:commandButton>
+				<h:commandButton ajax="false" value="Close" onclick="jQuery('#newPanel').hide()"/>
 			</p:overlayPanel>
 			<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="ui-mini" ajax="false"/>
 			</h:form>
@@ -70,7 +73,7 @@
 	<div id="viewEvents">
 		<fieldset>
 			<legend align="center">Event List</legend>
-			<h:form>
+			<h:form id="viewing">
 			<h:dataTable value="#{iCalBean.eventList}" var="event">
 				<h:column>
         			<f:facet name="header">Title</f:facet>
