@@ -3,6 +3,7 @@ package iCal.data;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class Event {
 	private String eventTitle;
 	private boolean wholeDay;
@@ -13,6 +14,7 @@ public class Event {
 	private String location;
 	private boolean editable;
 	private Calendar currentDate;
+	
 	
 	public Event() {
 		setEventTitle("Title");
