@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="libs"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_72"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 10.0 Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -18,11 +18,5 @@
 			<attribute name="javadoc_location" value="jar:file:/F:/Downloads/ical4j-2.0-beta1/ical4j-2.0-beta1/ical4j-2.0-beta1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/Downloads/ical4j-2.0-beta1/ical4j-2.0-beta1/ical4j-2.0-beta1.jar"/>
-	<classpathentry kind="lib" path="F:/Downloads/ical4j-2.0-beta1/ical4j-2.0-beta1/ical4j-2.0-beta1-javadoc.jar"/>
-	<classpathentry kind="lib" path="F:/Downloads/ical4j-2.0-beta1/ical4j-2.0-beta1/ical4j-2.0-beta1-sources.jar"/>
-	<classpathentry kind="var" path="ICAL4J_JARS/ical4j-2.0-beta1-javadoc.jar"/>
-	<classpathentry kind="var" path="ICAL4J_JARS/ical4j-2.0-beta1-sources.jar"/>
-	<classpathentry kind="var" path="ICAL4J_JARS/ical4j-2.0-beta1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
