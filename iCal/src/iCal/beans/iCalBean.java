@@ -1,11 +1,17 @@
 package iCal.beans;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
+import iCal.Model.iCalGenerator;
 import iCal.data.Event;
 
 @ManagedBean
@@ -36,40 +42,59 @@ public class iCalBean {
 		this.eventSample = eventSample;
 	}
 
-	// Akcje
-
 	public void addEvent() {
-		if (! eventList.add(eventSample)) {
+		if (!eventList.add(eventSample)) {
 			System.out.println("[ERROR - iCalBean.addEvent] Nie dodano eventu");
 		}
 		clearEventSample();
 	}
-	
+
 	private void clearEventSample() {
 		eventSample = new Event();
 	}
-	
-	public void copyEvent(Event event){
+
+	public void copyEvent(Event event) {
 		eventList.add(new Event(event));
 	}
-	
-	public void deleteEvent(Event event){
+
+	public void deleteEvent(Event event) {
 		eventList.remove(event);
 	}
-	
-	public void clearEvents(){
+
+	public void clearEvents() {
 		eventList.clear();
 	}
-	
-	//Edit button methods
+
+	// Edit button methods
 	public String saveEventEdit(Event event) {
 		event.setEditable(false);
 		return null;
 	}
-	
+
 	public String editEventEdit(Event event) {
 		event.setEditable(true);
 		return null;
+
 	}
-	
+
+	public void generateICal() {
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletResponse response = (HttpServletResponse) context.getResponse();
+		response.setContentType("application/force-download");
+		response.setHeader("Content-Disposition", "attachment;filename=iCal.ics");
+
+		ServletOutputStream out;
+		try {
+			out = response.getOutputStream();
+
+			iCalGenerator generator = new iCalGenerator();
+			generator.buildCalendar(eventList);
+
+			out.println(generator.getICal());
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 }
