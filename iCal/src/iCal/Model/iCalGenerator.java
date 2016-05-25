@@ -14,7 +14,8 @@ public class iCalGenerator {
 	private String eventBegin = "BEGIN:VEVENT\n";
 	private String eventEnd =   "END:VEVENT\n";
 	
-	String timeZone = "TZID:Europe/Berlin\n"+
+	String timeZone = "BEGIN:VTIMEZONE\n"+
+			"TZID:Europe/Berlin\n"+
 			"TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Berlin\n"+
 			"X-LIC- LOCATION:Europe/Berlin\n"+
 			"BEGIN:DAYLIGHT\n"+
