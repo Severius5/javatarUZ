@@ -29,8 +29,9 @@
 			<p:commandButton id="newButton" value="Nowy Event" type="button" styleClass="ui-mini"/>
    			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
 				<p:outputLabel value="Title: ">
-					<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" maxlength="32"/>
+					<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="Podaj tytuł" id="tytul" maxlength="32"/>
 				</p:outputLabel>
+				<h:message for="tytul"/>
 				<br/>
 				<p:outputLabel value="Whole day: ">
 					<h:selectBooleanCheckbox value="#{iCalBean.eventSample.wholeDay}" required="true" id="checker">
@@ -77,8 +78,9 @@
 			<h:dataTable value="#{iCalBean.eventList}" var="event">
 				<h:column>
         			<f:facet name="header">Title</f:facet>
-    				<h:inputText value="#{event.eventTitle}" ize="10" rendered="#{event.editable}" />
+    				<h:inputText value="#{event.eventTitle}" required="true" requiredMessage="wymagany tytuł" id="changetitle" ize="10" rendered="#{event.editable}" />
     				<h:outputText value="#{event.eventTitle}" rendered="#{not event.editable}" />
+    				<br/><h:message for="changetitle" styleClass="error"/>
     			</h:column>
     			<h:column>
       			  	<f:facet name="header">Whole day</f:facet>
@@ -111,13 +113,15 @@
     			</h:column>
     			<h:column>
       			  	<f:facet name="header">Description</f:facet>
-    				<h:inputText value="#{event.description}" rendered="#{event.editable}" />
+    				<h:inputText value="#{event.description}" required="true" requiredMessage="wymagany opis" id="changedesc" rendered="#{event.editable}" />
     				<h:outputText value="#{event.description}" rendered="#{not event.editable}" />
+    				<br/><h:message for="changedesc" styleClass="error"/>
     			</h:column>
     			<h:column>
        			 	<f:facet name="header">Location</f:facet>
-    				<h:inputText value="#{event.location}" rendered="#{event.editable}" />
+    				<h:inputText value="#{event.location}" required="true" requiredMessage="wymagana lokalizacja" id="changeloc" rendered="#{event.editable}" />
     				<h:outputText value="#{event.location}" rendered="#{not event.editable}" />
+    				<br/><h:message for="changeloc" styleClass="error"/>
     			</h:column>
     			<h:column>
         			<f:facet name="header">Copy</f:facet>
