@@ -6,14 +6,18 @@ HttpServletRequest request = (HttpServletRequest)context.getRequest();
 HttpServletResponse response = (HttpServletResponse)context.getResponse();
 
 public String doAction() throws IOException{
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		HttpServletRequest request = (HttpServletRequest)context.getRequest();
-		HttpServletResponse response = (HttpServletResponse)context.getResponse();
-		response.setContentType("application/force-download");
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext(); // Pobieranie Kontekstu ze strony. poprostu jakby przegladarki
+		HttpServletRequest request = (HttpServletRequest)context.getRequest(); // Pobieranie obiektu requestu [ requesty :V jakie dostalismy od klienta stad pobieramy ]  
+		HttpServletResponse response = (HttpServletResponse)context.getResponse(); // pobieranie obiektu resposne ktorym odpowiadamy klientowi
+		response.setContentType("application/force-download"); // ustawienie ze odpowiedz ma byc w formie pobrania pliku
 		response.setHeader("Content-Disposition",
-				"attachment;filename=downloadfilename.txt");
-		ServletOutputStream out = response.getOutputStream();
-		out.println(request.getRequestedSessionId());
+				"attachment;filename=downloadfilename.txt"); // ustawieni eheadera tak aby PROPONOWANA NAZWA BYLA "downlaodfilename.txt"
+				// tutaj rozne operacje na iCalGenerator
+				
+		ServletOutputStream out = response.getOutputStream(); // pobranie strumienia danych za pomoca ktorych mozemy cos mu wyrzucic
+		
+		out.println(request.getRequestedSessionId()); // wpisujemy linie kodu tutaj akurat to ty masz zrobic tak :  out.println(icalgeneratorzmienna.getICal());
 		out.close();
 		return "#";
 	}
+	przeciez masz to zrobione all ;d

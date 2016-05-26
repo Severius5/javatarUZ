@@ -67,6 +67,8 @@
 				<h:commandButton ajax="false" value="Close" onclick="jQuery('#newPanel').hide()"/>
 			</p:overlayPanel>
 			<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="ui-mini" ajax="false"/>
+			<p:commandButton action="#{iCalBean.generateICal()}" value="Generuj" styleClass="ui-mini" ajax="false"/>
+			<p:commandButton action="#{iCalBean.readFromICalFile()}" value="ToDo" styleClass="ui-mini" ajax="false"/>
 			</h:form>
 		</fieldset>
 	</div>
