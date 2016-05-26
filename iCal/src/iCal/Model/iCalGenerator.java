@@ -1,38 +1,41 @@
 package iCal.Model;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import iCal.data.Event;
 
 public class iCalGenerator {
-	private String version =    "VERSION:2.0\n";
-	private String prodid =     "PRODID://JAVATAR UZ//\n";
-	private String calBegin =   "BEGIN:VCALENDAR\n";
+	private final String NEW_FORMAT = "yyyyMMdd'T'HHmmss'Z'";
+	private String version =    "VERSION:2.0\r\n";
+	private String prodid =     "PRODID://JAVATAR UZ//\r\n";
+	private String calBegin =   "BEGIN:VCALENDAR\r\n";
 	private String calEnd =     "END:VCALENDAR";
-	private String eventBegin = "BEGIN:VEVENT\n";
-	private String eventEnd =   "END:VEVENT\n";
+	private String eventBegin = "BEGIN:VEVENT\r\n";
+	private String eventEnd =   "END:VEVENT\r\n";
 	
-	String timeZone = "BEGIN:VTIMEZONE\n"+
-			"TZID:Europe/Berlin\n"+
-			"TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Berlin\n"+
-			"X-LIC- LOCATION:Europe/Berlin\n"+
-			"BEGIN:DAYLIGHT\n"+
-			"TZOFFSETFROM:+0100\n"+
-			"TZOFFSETTO:+0200\n"+
-			"TZNAME:CEST\n"+
-			"DTSTART:19700329T020000\n"+
-			"RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\n"+
-			"END:DAYLIGHT\n"+
-			"BEGIN:STANDARD\n"+
-			"TZOFFSETFROM:+0200\n"+
-			"TZOFFSETTO:+0100\n"+
-			"TZNAME:CET\n"+
-			"DTSTART:19701025T030000\n"+
-			"RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\n"+
-			"END:STANDARD\n"+
-			"END:VTIMEZONE\n";
+	String timeZone = "BEGIN:VTIMEZONE\r\n"+
+			"TZID:Europe/Berlin\r\n"+
+			"TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Berlin\r\n"+
+			"X-LIC- LOCATION:Europe/Berlin\r\n"+
+			"BEGIN:DAYLIGHT\r\n"+
+			"TZOFFSETFROM:+0100\r\n"+
+			"TZOFFSETTO:+0200\r\n"+
+			"TZNAME:CEST\r\n"+
+			"DTSTART:19700329T020000\r\n"+
+			"RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\r\n"+
+			"END:DAYLIGHT\r\n"+
+			"BEGIN:STANDARD\r\n"+
+			"TZOFFSETFROM:+0200\r\n"+
+			"TZOFFSETTO:+0100\r\n"+
+			"TZNAME:CET\r\n"+
+			"DTSTART:19701025T030000\r\n"+
+			"RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\r\n"+
+			"END:STANDARD\r\n"+
+			"END:VTIMEZONE\r\n";
 	
 	
 	private String iCal;
@@ -44,15 +47,31 @@ public class iCalGenerator {
 		builder.append(prodid);	
 		builder.append(timeZone);
 	}
+	
+//	olewa true w ifie
 	private void createEvents(List<Event> list) { 
 		for(Event e: list) {
-			builder.append(eventBegin);
-			builder.append("DTSTART:" + formatDate(e.getDateStart())+"\n");
-			builder.append("DTEND:" + formatDate(e.getDateEnd())+"\n");
-			builder.append("SUMMARY:"+e.getEventTitle()+"\n");
-			builder.append("LOCATION:"+e.getLocation()+"\n");
-			builder.append("DESCRIPTION:"+e.getDescription()+"\n");
-			builder.append(eventEnd);
+			if(e.isWholeDay()) {
+//				Date endDate = incrementDate(e.getDateEnd());
+				builder.append(eventBegin);
+				builder.append("DTSTART;VALUE=DATE:" + resetHours(e.getDateStart())+"\r\n");
+				builder.append("DTEND;VALUE=DATE:" + resetHours(e.getDateEnd())+"\r\n");
+				builder.append("SUMMARY:"+e.getEventTitle()+"\r\n");
+				builder.append("LOCATION:"+e.getLocation()+"\r\n");
+				builder.append("DESCRIPTION:"+e.getDescription()+"\r\n");
+				builder.append(eventEnd);
+					
+				
+			} else {
+				builder.append(eventBegin);
+				builder.append("DTSTART:" + formatDate(e.getDateStart())+"\r\n");
+				builder.append("DTEND:" + formatDate(e.getDateEnd())+"\r\n");
+				builder.append("SUMMARY:"+e.getEventTitle()+"\r\n");
+				builder.append("LOCATION:"+e.getLocation()+"\r\n");
+				builder.append("DESCRIPTION:"+e.getDescription()+"\r\n");
+				builder.append(eventEnd);
+				
+			}
 		}
 	}
 	private void closeCalendar() {
@@ -67,15 +86,31 @@ public class iCalGenerator {
 	}
 	
 
-	public String formatDate(Date date) {
+	private String formatDate(Date date) {
 		String newDateString;
-		final String NEW_FORMAT = "yyyyMMdd'T'HHMMSS'Z'";
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		sdf.applyPattern(NEW_FORMAT);
+		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 		newDateString = sdf.format(date);	
 		return newDateString;
 	}
 	
+	private Date incrementDate(Date date) {
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 1); 
+        return cal.getTime();
+	}
+	
+	private String resetHours(Date date) {
+		String dateString = formatDate(date);
+		int startIndex = dateString.indexOf("T");
+		int endIndex = dateString.indexOf("Z");
+		String replacement = "000000";
+		String toBeReplaced = dateString.substring(startIndex + 1, endIndex);
+		dateString = dateString.replace(toBeReplaced, replacement);
+		return dateString;
+	}
 	public String getICal() { 
 		return iCal;
 	}
