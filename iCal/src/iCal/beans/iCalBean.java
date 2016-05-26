@@ -12,6 +12,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import iCal.Model.iCalGenerator;
+import iCal.Model.LoadICalFile;
 import iCal.data.Event;
 
 @ManagedBean
@@ -20,6 +21,7 @@ public class iCalBean {
 	// Data
 	private List<Event> eventList = new LinkedList<>();
 	private Event eventSample = new Event();
+	private LoadICalFile loader = new LoadICalFile(eventList);
 
 	// Settery Gettery Konstruktor
 	public iCalBean() {
@@ -48,7 +50,7 @@ public class iCalBean {
 		}
 		clearEventSample();
 	}
-
+	
 	private void clearEventSample() {
 		eventSample = new Event();
 	}
@@ -65,7 +67,6 @@ public class iCalBean {
 		eventList.clear();
 	}
 
-	// Edit button methods
 	public String saveEventEdit(Event event) {
 		event.setEditable(false);
 		return null;
@@ -96,5 +97,9 @@ public class iCalBean {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void readFromICalFile(){
+		loader.readICal();
 	}
 }
