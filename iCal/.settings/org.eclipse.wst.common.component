@@ -6,6 +6,9 @@
         <dependent-module archiveName="primefaces-5.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/iCal/libs/primefaces-5.3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="biweekly-0.4.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/iCal/libs/biweekly-0.4.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="iCal"/>
         <property name="java-output-path" value="/iCal/build/classes"/>
     </wb-module>

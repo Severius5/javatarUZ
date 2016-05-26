@@ -46,7 +46,8 @@ public class LoadICalFile {
 	}
 	
 	private boolean isEventAllDay(VEvent event){
-		//System.out.println(event.getDateStart().getParameter("VALUE"));
-        return event.getDateStart().toString().indexOf("VALUE=DATE") != -1;
+		String dtStart = event.getDateStart().toString();
+		String dtEnd = event.getDateEnd().toString();
+        return dtStart.contains("00:00:00") && dtEnd.contains("00:00:00");
     }
 }
