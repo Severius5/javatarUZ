@@ -60,7 +60,15 @@
 				<p:commandButton id="newButton" value="New Event" type="button" styleClass="niceButton"/>
 				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="niceButton" ajax="false"/>
 				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="niceButton" ajax="false"/>
-				<p:commandButton action="#{iCalBean.readFromICalFile()}" value="ToDo" styleClass="niceButton" ajax="false"/>
+				<p:menuButton value="Load iCal" styleClass="niceButton" ajax="false">
+       			<p:menuitem url="upload.jsf" value="From file" styleClass="niceButton" ajax="false"/>
+    			<p:menuitem value="From site" styleClass="niceButton" ajax="false"/>
+    			<p:menuitem value="From URL" styleClass="niceButton" ajax="false"/>
+    			
+    
+    			</p:menuButton>
+				
+				
 				</div>
 				</h:form>
 		</div><!--#AddNew-->
