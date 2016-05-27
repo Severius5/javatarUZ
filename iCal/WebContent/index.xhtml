@@ -7,16 +7,16 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-	
 	<title>iCal</title>
 	<link rel="stylesheet" type="text/css" href="style.css"></link>
 </h:head> 
 <h:body>
 	<div id="container">
 		<div id="mainHeader">Generator iCal</div>
+		<a href="https://github.com/javatarUZ/javatarUZ" id="git">GitHub</a>
+		<a href="https://tree.taiga.io/project/gatoke-javataruz" id="taiga" >Taiga</a>
 		<div id="addNew">
 			<h:form id="addingNew">
-				<p:commandButton id="newButton" value="New Event" type="button" styleClass="ui-mini"/>
 	   			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
 					<p:outputLabel value="Title: ">
 						<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="Podaj tytuł" id="tytul" maxlength="32"/>
@@ -56,9 +56,12 @@
 					</h:commandButton>
 					<h:commandButton ajax="false" value="Close" onclick="jQuery('#newPanel').hide()"/>
 				</p:overlayPanel>
-				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="ui-mini" ajax="false"/>
-				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="ui-mini" ajax="false"/>
-				<p:commandButton action="#{iCalBean.readFromICalFile()}" value="ToDo" styleClass="ui-mini" ajax="false"/>
+				<div class="buttons">
+				<p:commandButton id="newButton" value="New Event" type="button" styleClass="niceButton"/>
+				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="niceButton" ajax="false"/>
+				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="niceButton" ajax="false"/>
+				<p:commandButton action="#{iCalBean.readFromICalFile()}" value="ToDo" styleClass="niceButton" ajax="false"/>
+				</div>
 				</h:form>
 		</div><!--#AddNew-->
 		
@@ -105,7 +108,7 @@
 	      			  	<f:facet name="header">Description</f:facet>
 	    				<h:inputText value="#{event.description}" required="true" requiredMessage="wymagany opis" id="changedesc" rendered="#{event.editable}" />
 	    				<h:outputText value="#{event.description}" rendered="#{not event.editable}" />
-	    				<br/><h:message for="changedesc" styleClass="error"/>
+	    				<br/><h:message class="message" for="changedesc" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	       			 	<f:facet name="header">Location</f:facet>

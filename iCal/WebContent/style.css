@@ -7,11 +7,13 @@ html{
 html,body{
   margin:0;
   padding:0;
+  /*background:#333;*/
 }
 #container {
 	height:100%;
 	color:#000;
 	background:white;
+	/*background:#333;*/
 }
 #mainHeader {
 	background:#333;
@@ -22,6 +24,55 @@ html,body{
 	text-transform:uppercase;
 	font-weight:bold;
 	padding:20px;
+	box-shadow:0 1px 4px 2px #ccc;
+}
+#git {
+	position:fixed;
+    left:-18px;
+    top:250px;
+    color:#eee;
+    font-family:Arial;
+	text-align:center;
+    width:55px;
+  	height:20px;
+  	padding:5px;
+  	background:#333;
+   	transform:rotate(270deg);
+ 	-moz-transform:rotate(270deg);
+  	-webkit-transform:rotate(270deg);
+  	-o-transform:rotate(270deg);
+  	margin:0 auto;
+  	text-decoration: none;
+  	box-shadow:0 1px 4px 2px #ccc;
+}
+#taiga {
+	position:fixed;
+    left:-22px;
+    top:350px;
+    color:#444;
+    font-family:Arial;
+	text-align:center;
+    width:55px;
+  	height:20px;
+  	padding:5px;
+  	background:#00DB79;
+   	transform:rotate(270deg);
+ 	-moz-transform:rotate(270deg);
+  	-webkit-transform:rotate(270deg);
+  	-o-transform:rotate(270deg);
+  	margin:0 auto;
+  	text-decoration: none;
+  	box-shadow:0 1px 4px 2px #ccc;
+}
+a#git:hover {
+    background: #555;
+    color: white;
+    box-shadow:0 3px 6px 3px #ccc;
+}
+a#taiga:hover {
+    background: #00B96A;
+    color: white;
+    box-shadow:0 3px 6px 3px #ccc;
 }
 #addNew {
 	background:#333;
@@ -31,6 +82,7 @@ html,body{
 	width:1280px;
     margin:0 auto;
     margin-top:50px;
+    box-shadow:0 3px 4px 1px #ccc;
 }
 #viewEvents {
 	background:#fff;
@@ -38,6 +90,7 @@ html,body{
 	margin:0 auto;
 	padding:10px;
 	margin-bottom:100px;
+	box-shadow:0 3px 4px 1px #ccc;
 }
 #footer {
 	background:#333;
@@ -52,8 +105,36 @@ html,body{
  	left:0;
     right:0;
 }
-#newButton {
-	background:#333;
+.niceButton {
+    margin:0 10px 0 10px;
+    padding:5px 10px 28px 10px;
+    height:29px;
+    font-size:12px;
+    color:#262626;
+    background:#333;
+    font-weight:bold;
+    border:1px #ccc solid;
+    border-radius:5px;
+    font-family:Arial, Helvetica, sans-serif;
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    background: -o-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    background: linear-gradient(to bottom, #FFFFFF 0%, #E3E3E3 100%);
+}
+.niceButton:hover:enabled {
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    background: -o-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    background: linear-gradient(to bottom, #FFFFFF 0%, #CCCCCC 100%);
+}
+.niceButton:active:enabled {
+    background: -moz-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    background: -o-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    background: -webkit-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    background: linear-gradient(to bottom, #F0F0F0 0%, #CCCCCC 100%);
+}
+.message {
+	font-size:8px;
 }
 tr {
 	font-family:Arial;
