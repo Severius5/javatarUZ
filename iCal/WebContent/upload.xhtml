@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css"></link>
 </h:head> 
 <h:body>
-<p:fileUpload  action="#{load.file}" value="TEST" styleClass="ui-mini" ajax="false"/>
+<p:fileUpload  action="#{iCalBean.readFromICalFile(load.file)}" value="TEST" styleClass="ui-mini" ajax="false"/>
 
 </h:body> 
 </html>
