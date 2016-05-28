@@ -9,10 +9,11 @@
 <h:head>
 	<title>iCal</title>
 	<link rel="stylesheet" type="text/css" href="style.css"></link>
+	<link rel="stylesheet" type="text/css" href="Fontello/css/icons.css"></link>
 </h:head> 
 <h:body>
 	<div id="container">
-		<div id="mainHeader">Generator iCal</div>
+		<div id="mainHeader"><i class="demo-icon icon-table"></i> Generator iCal</div>
 		<a href="https://github.com/javatarUZ/javatarUZ" id="git">GitHub</a>
 		<a href="https://tree.taiga.io/project/gatoke-javataruz" id="taiga" >Taiga</a>
 		<div id="addNew">
@@ -52,24 +53,18 @@
 					<br/>
 					<br/>
 					<h:commandButton action="#{iCalBean.addEvent}" value="Add event" >
-						
 					</h:commandButton>
 					<h:commandButton ajax="false" value="Close" onclick="jQuery('#newPanel').hide()"/>
 				</p:overlayPanel>
 				<div class="buttons">
-				<p:commandButton id="newButton" value="New Event" type="button" styleClass="niceButton"/>
-				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="niceButton" ajax="false"/>
-				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="niceButton" ajax="false"/>
-				<p:menuButton value="Load iCal" styleClass="niceButton" ajax="false">
-       			<p:menuitem url="upload.jsf" value="From file" styleClass="niceButton" ajax="false"/>
-    			<p:menuitem value="From site" styleClass="niceButton" ajax="false"/>
-    			<p:menuitem value="From URL" styleClass="niceButton" ajax="false"/>
-    			 
-    			
-    
+				<p:commandButton id="newButton" value="New Event" styleClass="bigButton" type="button"/>
+				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="bigButton" ajax="false"/>
+				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="bigButton" ajax="false"/>
+				<p:menuButton value="Load iCal" ajax="false">
+       			<p:menuitem url="upload.jsf" value="From file" ajax="false"/>
+    			<p:menuitem value="From site" ajax="false"/>
+    			<p:menuitem value="From URL" ajax="false"/>
     			</p:menuButton>
-				
-				
 				</div>
 				</h:form>
 		</div><!--#AddNew-->
@@ -127,22 +122,24 @@
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Copy</f:facet>
-	    				<h:commandButton action="#{iCalBean.copyEvent(event)}" value="C" />
+	    				<h:commandLink class="smallButton" action="#{iCalBean.copyEvent(event)}"> <i class="demo-icon icon-docs"></i> </h:commandLink>
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Delete</f:facet>
-	    				<h:commandButton action="#{iCalBean.deleteEvent(event)}" value="D" />
+	    				<h:commandLink class="smallButton" action="#{iCalBean.deleteEvent(event)}"> <i class="demo-icon icon-trash"></i> </h:commandLink>
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Edit</f:facet>
-	        			<h:commandButton action="#{iCalBean.saveEventEdit(event)}" value="Save" rendered="#{event.editable}"/>
-	    				<h:commandButton action="#{iCalBean.editEventEdit(event)}" value="Edit" rendered="#{not event.editable}"/>
+	        			<h:commandLink class="smallButton" action="#{iCalBean.saveEventEdit(event)}" rendered="#{event.editable}">     <i class="demo-icon icon-floppy"> </i></h:commandLink>
+	    				<h:commandLink class="smallButton" action="#{iCalBean.editEventEdit(event)}" rendered="#{not event.editable}"> <i class="demo-icon icon-edit">   </i></h:commandLink>
 	    			</h:column>
 				</h:dataTable>
 				</h:form>
 			</fieldset>
 		</div><!--#viewEvents-->
-		<div id="footer">2016 &copy; Best Students ever</div>
+		<a href="#" class="scrollToTop"><i class="demo-icon icon-up"></i></a>
+		<div id="footer">2016 <i class="demo-icon icon-graduation-cap"></i> Made by Best Students ever</div>
 	</div><!--#container-->
+	<script type="text/javascript" src="script.js"></script>
 </h:body> 
 </html>
