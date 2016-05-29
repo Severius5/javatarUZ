@@ -7,13 +7,14 @@ html{
 html,body{
   margin:0;
   padding:0;
-  /*background:#333;*/
+  background:#8a9d8b;
+  background-image: url("Fontello/boards-black-line-texture-background-wood.jpg");
 }
 #container {
 	height:100%;
 	color:#000;
 	background:white;
-	/*background:#333;*/
+	background-image: url("Fontello/boards-black-line-texture-background-wood.jpg");
 }
 #mainHeader {
 	background:#333;
@@ -24,18 +25,18 @@ html,body{
 	text-transform:uppercase;
 	font-weight:bold;
 	padding:20px;
-	box-shadow:0 1px 4px 2px #ccc;
+	box-shadow:0 10px 40px #111;
 }
 #git {
 	position:fixed;
-    left:-18px;
+    left:-22px;
     top:250px;
     color:#eee;
     font-family:Arial;
 	text-align:center;
     width:55px;
-  	height:20px;
-  	padding:5px;
+  	height:25px;
+  	padding:15px 5px 0 5px;
   	background:#333;
    	transform:rotate(270deg);
  	-moz-transform:rotate(270deg);
@@ -43,7 +44,7 @@ html,body{
   	-o-transform:rotate(270deg);
   	margin:0 auto;
   	text-decoration: none;
-  	box-shadow:0 1px 4px 2px #ccc;
+  	border-radius:10px;
 }
 #taiga {
 	position:fixed;
@@ -53,8 +54,8 @@ html,body{
     font-family:Arial;
 	text-align:center;
     width:55px;
-  	height:20px;
-  	padding:5px;
+  	height:25px;
+  	padding:15px 5px 0 5px;
   	background:#00DB79;
    	transform:rotate(270deg);
  	-moz-transform:rotate(270deg);
@@ -62,17 +63,18 @@ html,body{
   	-o-transform:rotate(270deg);
   	margin:0 auto;
   	text-decoration: none;
-  	box-shadow:0 1px 4px 2px #ccc;
+  	border-radius:10px;
 }
 a#git:hover {
     background: #555;
     color: white;
-    box-shadow:0 3px 6px 3px #ccc;
+    box-shadow:0 10px 40px #000;
 }
 a#taiga:hover {
     background: #00B96A;
     color: white;
     box-shadow:0 3px 6px 3px #ccc;
+    box-shadow:0 10px 40px #000;
 }
 #addNew {
 	background:#333;
@@ -80,9 +82,10 @@ a#taiga:hover {
 	color:white;
 	font-family:Arial;
 	width:1280px;
+	height:40px;
     margin:0 auto;
     margin-top:50px;
-    box-shadow:0 3px 4px 1px #ccc;
+    box-shadow:10px 10px 40px #111;
 }
 #viewEvents {
 	background:#fff;
@@ -90,7 +93,7 @@ a#taiga:hover {
 	margin:0 auto;
 	padding:10px;
 	margin-bottom:100px;
-	box-shadow:0 3px 4px 1px #ccc;
+	box-shadow:10px 10px 40px #111;
 }
 #footer {
 	background:#333;
@@ -105,33 +108,130 @@ a#taiga:hover {
  	left:0;
     right:0;
 }
-.niceButton {
+.bigButton {
     margin:0 10px 0 10px;
     padding:5px 10px 28px 10px;
     height:29px;
-    font-size:12px;
-    color:#262626;
-    background:#333;
-    font-weight:bold;
-    border:1px #ccc solid;
+    font-size:14px;
+    padding-top:6px;
     border-radius:5px;
-    font-family:Arial, Helvetica, sans-serif;
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
-    background: -o-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
-    background: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
-    background: linear-gradient(to bottom, #FFFFFF 0%, #E3E3E3 100%);
+    outline:none;
+  	color:#fff;
+  	background:#4CAF50;
+  	border:none;
+  	text-shadow:none;
+  	box-shadow:0 7px #999;
+  	
 }
-.niceButton:hover:enabled {
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
-    background: -o-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
-    background: -webkit-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
-    background: linear-gradient(to bottom, #FFFFFF 0%, #CCCCCC 100%);
+#test {
+	color:red;
+	
 }
-.niceButton:active:enabled {
-    background: -moz-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
-    background: -o-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
-    background: -webkit-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
-    background: linear-gradient(to bottom, #F0F0F0 0%, #CCCCCC 100%);
+.bigButton:hover {
+    background-color:#3e8e41
+}
+.bigButton:active {
+    background-color:#3e8e41;
+  	box-shadow:0 5px #666;
+  	transform:translateY(4px);
+}
+.ui-menubutton .ui-state-default {
+    margin:0 10px 0 10px;
+    padding:5px 10px 28px 10px;
+    height:29px;
+    font-size:14px;
+    padding-top:6px;
+    border-radius:5px;
+    outline:none;
+  	color:#fff;
+  	background:#4CAF50;
+  	border:none;
+  	text-shadow:none;
+  	box-shadow:0 7px #999;
+}
+.ui-menubutton .ui-state-default:hover {
+    background-color:#3e8e41;
+}
+.ui-menubutton .ui-state-default:active {
+    background-color:#3e8e41;
+  	box-shadow:0 5px #666;
+  	transform:translateY(4px);
+}
+.mediumButton {
+    margin:0 10px 10px 10px;
+    padding:5px 10px 23px 10px;
+    height:18px;
+    font-size:12px;
+    padding-top:6px;
+    border-radius:5px;
+    outline:none;
+  	color:#fff;
+  	background:#4CAF50;
+  	border:none;
+  	text-shadow:none;
+  	box-shadow:0 7px #999;
+  	font-weight:bold;
+}
+.mediumButton:hover {
+    background-color:#3e8e41
+}
+.mediumButton:active {
+    background-color:#3e8e41;
+  	box-shadow:0 5px #666;
+  	transform:translateY(4px);
+}
+.smallButton {
+	text-decoration: none;
+	display:inline-block;
+	width:40px;
+	height:25px;
+	text-align:center;
+  	padding-top:6px;
+    border-radius:5px;
+    outline:none;
+  	color:#fff;
+  	background-color:#4CAF50;
+  	border:none;
+  	box-shadow:0 7px #999;
+}
+.smallButton:hover {
+    background-color:#3e8e41
+}
+.smallButton:active {
+	background-color:#3e8e41;
+  	box-shadow:0 5px #666;
+  	transform:translateY(4px);
+}
+.ui-menuitem:hover {
+  	color:#fff;
+  	background:#4CAF50;	
+  	box-shadow:0 3px #999;
+}
+.ui-menuitem:active {
+    background-color:#3e8e41;
+  	box-shadow:0 1px #666;
+  	transform:translateY(4px);
+}
+.scrollToTop {
+	text-decoration: none;
+	width:48px; 
+	height:46px;
+	font-size:35px;
+	padding:5px; 
+	text-align:center; 
+	background:#ccc;
+	font-weight: bold;
+	color: #444;
+	position:fixed;
+	bottom:75px;
+	right:40px;
+}
+.scrollToTop:hover{
+	text-decoration:none;
+}
+.ui-messages-error.ui-message-error {
+	color:#D8000C;
+	background-color:#fff!important;
 }
 .message {
 	font-size:8px;
@@ -142,12 +242,18 @@ tr {
 .ui-widget, .ui-widget .ui-widget {
 	font-size: 90% !important;	
 }	
+.ui-widget-content {
+	background:#fff;
+	margin-top:5px;
+	padding:10px;
+	box-shadow: 0 4px 8px 0 #ccc;
+}
 table {
    	border-collapse: collapse;
     width: 100%;
 }
 th, td {
-   	padding: 6px;
+   	padding: 10px;
    	text-align: left;
    	border-bottom: 1px solid #ddd;
 }
