@@ -37,8 +37,10 @@
 						</p:outputLabel>
 						<br/>
 						<p:outputLabel value="Date end: " >
-							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"/>
-							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"/>
+							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
+								required="true" requiredMessage="Podaj datę/czas końca" id="dateend"/>
+							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
+								required="true" requiredMessage="Podaj datę końca" id="dateend2"/>
 						</p:outputLabel>
 						<br/>
 					</h:panelGroup>
@@ -95,8 +97,12 @@
 						<h:outputText value="#{event.dateStart}" rendered="#{not event.editable and event.wholeDay}" >
 							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+2"/>
 						</h:outputText>
-	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"/>
-	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}"/>
+	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
+	    					required="true" requiredMessage="Podaj datę startu" id="datestart"/>
+	    					<br/><h:message for="datestart" styleClass="error"/>
+	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}"
+	    					required="true" requiredMessage="Podaj datę/czas startu" id="datestart2"/>
+	    					<br/><h:message for="datestart2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	      			  	<f:facet name="header">Date end</f:facet>
@@ -106,8 +112,12 @@
 						<h:outputText value="#{event.dateEnd}" rendered="#{not event.editable and event.wholeDay}" >
 							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+2"/>
 						</h:outputText>
-						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"/>
-						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}"/>
+						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
+							required="true" requiredMessage="Podaj datę/czas końca" id="dateend"/>
+							<br/><h:message for="dateend" styleClass="error"/>
+						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}" 
+							required="true" requiredMessage="Podaj datę końca" id="dateend2"/>
+							<br/><h:message for="dateend2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	      			  	<f:facet name="header">Description</f:facet>
