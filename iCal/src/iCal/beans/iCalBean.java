@@ -47,7 +47,7 @@ public class iCalBean {
 	}
 	
 	/**
-	 * Gets the event list.
+	 * This method allows to get the event list.
 	 *
 	 * @return eventList
 	 */
@@ -56,7 +56,7 @@ public class iCalBean {
 	}
 	
 	/**
-	 * Sets the event list.
+	 * This method allows to set the event list.
 	 *
 	 * @param eventList
 	 */
@@ -65,7 +65,7 @@ public class iCalBean {
 	}
 	
 	/**
-	 * Gets the event sample.
+	 * This method allows to get the event sample.
 	 *
 	 * @return eventSample
 	 */
@@ -74,7 +74,7 @@ public class iCalBean {
 	}
 	
 	/**
-	 * Sets the event sample.
+	 * This method allows to set the event sample.
 	 *
 	 * @param eventSample
 	 */
@@ -83,7 +83,7 @@ public class iCalBean {
 	}
 
 	/**
-	 * Adds the event.
+	 * This method allows to add the event.
 	 */
 	public void addEvent() {
 		if (!eventList.add(eventSample)) {
@@ -128,22 +128,18 @@ public class iCalBean {
 	 * This method allows to set the <code>setEditable</code> method to true in order to save an <code>event</code>.
 	 *
 	 * @param event
-	 * @return the string
 	 */
-	public String saveEventEdit(Event event) {
+	public void saveEventEdit(Event event) {
 		event.setEditable(false);
-		return null;
 	}
 
 	/**
 	 * This method allows to set the <code>setEditable</code> method to true in order to edit an <code>event</code>.
 	 *
 	 * @param event
-	 * @return the string
 	 */
-	public String editEventEdit(Event event) {
+	public void editEventEdit(Event event) {
 		event.setEditable(true);
-		return null;
 
 	}
 
