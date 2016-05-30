@@ -8,15 +8,45 @@ import java.util.TimeZone;
 
 import iCal.data.Event;
 
+/**
+ * The iCalGenerator Class consist of methods allowing user to generate an ICal file.
+ * <p>
+ * A user will be able to download his own ICal file whenever he presses a specified button which is located
+ * on a website. Once it's pressed methods using {@link StringBuilder} will start to build a String containing
+ * desired data.
+ * @author ?
+ * @version
+ * @see SimpleDateFormat
+ * @see StringBuilder
+ * @see Date
+ * @see Calendar
+ * @see TimeZone
+ * @since ?
+ */
 public class iCalGenerator {
+	
+	/** The new format variable. */
 	private final String NEW_FORMAT = "yyyyMMdd'T'HHmmss'Z'";
+	
+	/** The version variable. */
 	private String version =    "VERSION:2.0\r\n";
+	
+	/** The prodid variable. */
 	private String prodid =     "PRODID://JAVATAR UZ//\r\n";
+	
+	/** The calendar begin variable. */
 	private String calBegin =   "BEGIN:VCALENDAR\r\n";
+	
+	/** The calendar end variable. */
 	private String calEnd =     "END:VCALENDAR";
+	
+	/** The event begin variable. */
 	private String eventBegin = "BEGIN:VEVENT\r\n";
+	
+	/** The event end variable. */
 	private String eventEnd =   "END:VEVENT\r\n";
 	
+	/** The time zone variable. */
 	String timeZone = "BEGIN:VTIMEZONE\r\n"+
 			"TZID:Europe/Berlin\r\n"+
 			"TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Berlin\r\n"+
@@ -38,9 +68,17 @@ public class iCalGenerator {
 			"END:VTIMEZONE\r\n";
 	
 	
+	/** The iCal variable. */
 	private String iCal;
+	
+	/** The builder object. */
 	private StringBuilder builder = new StringBuilder();
 	
+	/**
+	 * This method opens new calendar and adds first data to it, that is <code>version</code>, 
+	 * <code>prodid</code>, and <code>timeZone</code> using <code>append</code> method from {@link StringBuilder}.
+	 * <p>
+	 */
 	private void openCalendar() { 
 		builder.append(calBegin);
 		builder.append(version);
@@ -48,6 +86,15 @@ public class iCalGenerator {
 		builder.append(timeZone);
 	}
 	
+/**
+ * This method builds a string from a given list.
+ *<p>
+ *The method checks what <code>isWholeDay</code> method returns. If it's true then date
+ *start and date end are reseted using <code>resetHours</code> method. If it's not then that step is skipped.
+ *The rest for both blocks is the same. String is being built by appending following Strings. At the end of an
+ *event's String en <code>eventEnd</code> variable is appended to finish it. 
+ * @param list
+ */
 //	olewa true w ifie
 	private void createEvents(List<Event> list) { 
 		for(Event e: list) {
@@ -74,10 +121,23 @@ public class iCalGenerator {
 			}
 		}
 	}
+	
+	/**
+	 * This method ends calendar String by appending <code>calEnd</code> String to the end of it.
+	 */
 	private void closeCalendar() {
 		builder.append(calEnd);
 	}
 	
+	/**
+	 * This method builds a calendar by calling methods defined above.
+	 *<p>
+	 *At first an <code>openCalendar</code> method is called, which allows to open calendar and adds basic
+	 *information, for example <code>version</code>. Then a <code>createEvents</code> method is called. It
+	 *appends various informations to a String, for example title or description. At the end a
+	 *<code>closeCalendar</code> method is called and it finishes building the String.
+	 * @param list
+	 */
 	public void buildCalendar(List<Event> list) {
 		openCalendar();
 		createEvents(list);
@@ -86,6 +146,13 @@ public class iCalGenerator {
 	}
 	
 
+	/**
+	 * This method changes the date format to the format given as a String variable.
+	 *<p>
+	 *
+	 * @param date
+	 * @return the date
+	 */
 	private String formatDate(Date date) {
 		String newDateString;
 		SimpleDateFormat sdf = new SimpleDateFormat();
@@ -95,6 +162,12 @@ public class iCalGenerator {
 		return newDateString;
 	}
 	
+	/**
+	 * This method sets calendar's time and adds value 1 to calendar's date each time it's called.
+	 *<p>
+	 * @param date
+	 * @return the date
+	 */
 	private Date incrementDate(Date date) {
 		Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -102,6 +175,12 @@ public class iCalGenerator {
         return cal.getTime();
 	}
 	
+	/**
+	 * This method resets date String by changing replacing it with a different one.
+	 *
+	 * @param date
+	 * @return date the date
+	 */
 	private String resetHours(Date date) {
 		String dateString = formatDate(date);
 		int startIndex = dateString.indexOf("T");
@@ -111,6 +190,12 @@ public class iCalGenerator {
 		dateString = dateString.replace(toBeReplaced, replacement);
 		return dateString;
 	}
+	
+	/**
+	 * This method allows return the <code>iCal</code> variable.
+	 *
+	 * @return the iCal
+	 */
 	public String getICal() { 
 		return iCal;
 	}
