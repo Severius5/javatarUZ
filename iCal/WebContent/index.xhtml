@@ -41,16 +41,24 @@
 					<h:panelGroup id="createDate">
 						<p:outputLabel value="Date start: " >
 							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart"/>
+								required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart" maxdate="#{iCalBean.eventSample.dateEnd}">
+									<p:ajax event="dateSelect" update="dateend"></p:ajax>
+							</p:calendar>
 							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2"/>
+								required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2" maxdate="#{iCalBean.eventSample.dateEnd}">
+									<p:ajax event="dateSelect" update="dateend2"></p:ajax>
+							</p:calendar>
 						</p:outputLabel>
 						<br/>
 						<p:outputLabel value="Date end: " >
 							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend"/>
+								required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend" mindate="#{iCalBean.eventSample.dateStart}">
+									<p:ajax event="dateSelect" update="datestart"></p:ajax>
+							</p:calendar>
 							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2"/>
+								required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2" mindate="#{iCalBean.eventSample.dateStart}">
+									<p:ajax event="dateSelect" update="datestart2"></p:ajax>
+							</p:calendar>
 						</p:outputLabel>
 						<br/>
 					</h:panelGroup>
@@ -116,10 +124,14 @@
 							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+2"/>
 						</h:outputText>
 	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
-	    					required="true" requiredMessage="Podaj datę startu" id="datestart"/>
+	    					required="true" requiredMessage="Podaj datę startu" id="datestart" maxdate="#{event.dateEnd}">
+	    						<p:ajax event="dateSelect" update="dateend"></p:ajax>
+	    				</p:calendar>
 	    					<br/><h:message for="datestart" styleClass="error"/>
 	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}"
-	    					required="true" requiredMessage="Podaj datę/czas startu" id="datestart2"/>
+	    					required="true" requiredMessage="Podaj datę/czas startu" id="datestart2" maxdate="#{event.dateEnd}">
+	    						<p:ajax event="dateSelect" update="dateend2"></p:ajax>
+	    				</p:calendar>
 	    					<br/><h:message for="datestart2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
@@ -133,10 +145,14 @@
 							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+2"/>
 						</h:outputText>
 						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
-							required="true" requiredMessage="Podaj datę/czas końca" id="dateend"/>
+							required="true" requiredMessage="Podaj datę/czas końca" id="dateend" mindate="#{event.dateStart}">
+								<p:ajax event="dateSelect" update="datestart"></p:ajax>
+						</p:calendar>
 							<br/><h:message for="dateend" styleClass="error"/>
 						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}" 
-							required="true" requiredMessage="Podaj datę końca" id="dateend2"/>
+							required="true" requiredMessage="Podaj datę końca" id="dateend2" mindate="#{event.dateStart}">
+								<p:ajax event="dateSelect" update="datestart2"></p:ajax>
+						</p:calendar>
 							<br/><h:message for="dateend2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
