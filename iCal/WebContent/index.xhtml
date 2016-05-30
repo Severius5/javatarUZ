@@ -16,13 +16,21 @@
 		<div id="mainHeader"><i class="demo-icon icon-table"></i> Generator iCal</div>
 		<a href="https://github.com/javatarUZ/javatarUZ" id="git">GitHub</a>
 		<a href="https://tree.taiga.io/project/gatoke-javataruz" id="taiga" >Taiga</a>
+		
 		<div id="addNew">
-			<h:form id="addingNew">
+				<h:form id="addingNew">
+				<h:message for="tytul"/>
+				<h:message for="datestart"/>
+				<h:message for="datestart2"/>
+				<h:message for="dateend"/>
+				<h:message for="dateend2"/>
+				<h:message for="loca"/>
+				<h:message for="descset"/>
+			
 	   			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
 					<p:outputLabel value="Title: ">
-						<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="Podaj tytuł" id="tytul" maxlength="32"/>
+						<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="	[Wymagany tytuł]	" id="tytul" maxlength="32"/>
 					</p:outputLabel>
-					<h:message for="tytul"/>
 					<br/>
 					<p:outputLabel value="Whole day: ">
 						<h:selectBooleanCheckbox value="#{iCalBean.eventSample.wholeDay}" required="true" id="checker">
@@ -32,25 +40,30 @@
 					</p:outputLabel>
 					<h:panelGroup id="createDate">
 						<p:outputLabel value="Date start: " >
-							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"/>
-							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"/>
+							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
+								required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart"/>
+							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
+								required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2"/>
 						</p:outputLabel>
 						<br/>
 						<p:outputLabel value="Date end: " >
 							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="Podaj datę/czas końca" id="dateend"/>
+								required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend"/>
 							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="Podaj datę końca" id="dateend2"/>
+								required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2"/>
 						</p:outputLabel>
 						<br/>
 					</h:panelGroup>
 					<p:outputLabel value="Location: ">
-						<h:inputText value="#{iCalBean.eventSample.location}" required="true" maxlength="32"/>
+						<h:inputText value="#{iCalBean.eventSample.location}" 
+							required="true" requiredMessage="	[Wymagana lokalizacja]	" id="loca" maxlength="32"/>
 					</p:outputLabel>
 					<br/>
 					<p:outputLabel value="Description:"/>
 					<br/>
-					<h:inputTextarea value="#{iCalBean.eventSample.description}" required="true" maxlength="150" style="height:200px;width:400px;"/>
+					<h:inputTextarea value="#{iCalBean.eventSample.description}" 
+						required="true" requiredMessage="	[Wymagany opis]	" id="descset"
+						maxlength="150" style="height:200px;width:400px;"/>
 					<br/>
 					<br/>
 					<br/>
