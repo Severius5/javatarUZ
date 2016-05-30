@@ -69,7 +69,7 @@
 					<br/>
 					<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" > <!-- ROBIMY TU -->
 					</h:commandButton>
-					<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('#newPanel').hide()"/> <!-- ROBIMY TU -->
+					<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/> <!-- ROBIMY TU -->
 				</p:overlayPanel>
 				<div class="buttons">
 				<p:commandButton id="newButton" value="New Event" styleClass="bigButton" type="button"/>
@@ -80,6 +80,7 @@
     			<p:menuitem value="From site" ajax="false"/>
     			<p:menuitem value="From URL" ajax="false"/>
     			</p:menuButton>
+    			<h:commandButton action="#{iCalBean.readFromICalFile()}" value="tmp" />
 				</div>
 				</h:form>
 		</div><!--#AddNew-->
@@ -90,7 +91,9 @@
 				<h:form id="viewing">
 				<h:dataTable value="#{iCalBean.eventList}" var="event">
 					<h:column>
-	        			<f:facet name="header">Title</f:facet>
+	        			<f:facet name="header">
+							<h:commandLink action="#{iCalBean.sortByTitle()}">Title</h:commandLink>
+						</f:facet>
 	    				<h:inputText value="#{event.eventTitle}" required="true" requiredMessage="wymagany tytuł" id="changetitle" ize="10" rendered="#{event.editable}" />
 	    				<h:outputText value="#{event.eventTitle}" rendered="#{not event.editable}" />
 	    				<br/><h:message for="changetitle" styleClass="error"/>
@@ -103,7 +106,9 @@
 	    				<h:outputText value="#{event.wholeDay}" rendered="#{not event.editable}" />
 	    			</h:column>
 	    			<h:column>
-	        			<f:facet name="header">Date start</f:facet>
+	        			<f:facet name="header">
+	        				<h:commandLink action="#{iCalBean.sortByDateStart()}">Date Start</h:commandLink>
+	        			</f:facet>
 	    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable and not event.wholeDay}" >
 							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT+2"/>
 						</h:outputText>
@@ -118,7 +123,9 @@
 	    					<br/><h:message for="datestart2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
-	      			  	<f:facet name="header">Date end</f:facet>
+	      			  	<f:facet name="header">
+	      			  		<h:commandLink action="#{iCalBean.sortByDateEnd()}">Date End</h:commandLink>
+	      			  	</f:facet>
 						<h:outputText value="#{event.dateEnd}" rendered="#{not event.editable and not event.wholeDay}" >
 							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT+2"/>
 						</h:outputText>

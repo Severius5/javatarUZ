@@ -1,6 +1,8 @@
 package iCal.beans;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import iCal.Model.iCalGenerator;
 import iCal.Model.LoadICalFile;
+import iCal.Model.iCalGenerator;
 import iCal.data.Event;
 
 
@@ -36,6 +38,10 @@ public class iCalBean {
 	private Event eventSample = new Event();
 	
 	private LoadICalFile loader = new LoadICalFile(eventList);
+	
+	private boolean sortTitleAsc = true; 
+	private boolean sortDateStartAsc = true; 
+	private boolean sortDateEndAsc = true; 
 
 	// Settery Gettery Konstruktor
 	/**
@@ -90,6 +96,7 @@ public class iCalBean {
 			System.out.println("[ERROR - iCalBean.addEvent] Nie dodano eventu");
 		}
 		clearEventSample();
+		sortingDateStartByAsc();
 	}
 	
 	/**
@@ -183,5 +190,81 @@ public class iCalBean {
 	 */
 	public void readFromICalFile(){
 		loader.readICal();
+	}
+	
+	public void sortByTitle(){
+		if(sortTitleAsc){
+			Collections.sort(eventList, new Comparator<Event>(){
+
+				@Override
+				public int compare(Event o1, Event o2) {
+					return o1.getEventTitle().compareTo(o2.getEventTitle());
+				}
+				
+			});
+			sortTitleAsc = false;
+		}else{
+			Collections.sort(eventList, new Comparator<Event>(){
+
+				@Override
+				public int compare(Event o1, Event o2) {
+					return o2.getEventTitle().compareTo(o1.getEventTitle());
+				}
+				
+			});
+			sortTitleAsc = true;
+		}
+	}
+	
+	public void sortByDateStart(){
+		if(sortDateStartAsc){
+			sortingDateStartByAsc();
+			sortDateStartAsc = false;
+		}else{
+			Collections.sort(eventList, new Comparator<Event>(){
+
+				@Override
+				public int compare(Event o1, Event o2) {
+					return o2.getDateStart().compareTo(o1.getDateStart());
+				}
+				
+			});
+			sortDateStartAsc = true;
+		}
+	}
+
+	private void sortingDateStartByAsc() {
+		Collections.sort(eventList, new Comparator<Event>(){
+
+			@Override
+			public int compare(Event o1, Event o2) {
+				return o1.getDateStart().compareTo(o2.getDateStart());
+			}
+			
+		});
+	}
+	
+	public void sortByDateEnd(){
+		if(sortDateEndAsc){
+			Collections.sort(eventList, new Comparator<Event>(){
+
+				@Override
+				public int compare(Event o1, Event o2) {
+					return o1.getDateEnd().compareTo(o2.getDateEnd());
+				}
+				
+			});
+			sortDateEndAsc = false;
+		}else{
+			Collections.sort(eventList, new Comparator<Event>(){
+
+				@Override
+				public int compare(Event o1, Event o2) {
+					return o2.getDateEnd().compareTo(o1.getDateEnd());
+				}
+				
+			});
+			sortDateEndAsc = true;
+		}
 	}
 }
