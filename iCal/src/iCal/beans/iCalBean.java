@@ -13,10 +13,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import iCal.Model.LoadICalFile;
+import iCal.Model.LoadFile;
 import iCal.Model.iCalGenerator;
 import iCal.data.Event;
-
 
 /**
  * The ICalBean class consists of methods allowing user work on events, generate an ICal file and read from it.
@@ -36,8 +35,7 @@ public class iCalBean {
 	private List<Event> eventList = new LinkedList<>();
 	
 	private Event eventSample = new Event();
-	
-	private LoadICalFile loader = new LoadICalFile(eventList);
+	private LoadFile loadFile = new LoadFile(eventList);
 	
 	private boolean sortTitleAsc = true; 
 	private boolean sortDateStartAsc = true; 
@@ -77,6 +75,14 @@ public class iCalBean {
 	 */
 	public Event getEventSample() {
 		return eventSample;
+	}
+	
+	public LoadFile getLoadFile() {
+		return loadFile;
+	}
+
+	public void setLoadFile(LoadFile loadFile) {
+		this.loadFile = loadFile;
 	}
 	
 	/**
@@ -169,7 +175,7 @@ public class iCalBean {
 		HttpServletResponse response = (HttpServletResponse) context.getResponse();
 		response.setContentType("application/force-download");
 		response.setHeader("Content-Disposition", "attachment;filename=iCal.ics");
-
+		
 		ServletOutputStream out;
 		try {
 			out = response.getOutputStream();
@@ -184,14 +190,7 @@ public class iCalBean {
 		}
 
 	}
-	
-	/**
-	 * This method allows to read a content of an ICal file.
-	 */
-	public void readFromICalFile(){
-		loader.readICal();
-	}
-	
+
 	public void sortByTitle(){
 		if(sortTitleAsc){
 			Collections.sort(eventList, new Comparator<Event>(){

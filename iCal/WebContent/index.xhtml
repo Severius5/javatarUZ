@@ -12,87 +12,90 @@
 	<link rel="stylesheet" type="text/css" href="Fontello/css/icons.css"></link>
 </h:head> 
 <h:body>
+
 	<div id="container">
 		<div id="mainHeader"><i class="demo-icon icon-table"></i> Generator iCal</div>
 		<a href="https://github.com/javatarUZ/javatarUZ" id="git">GitHub</a>
 		<a href="https://tree.taiga.io/project/gatoke-javataruz" id="taiga" >Taiga</a>
 		
 		<div id="addNew">
-				<h:form id="addingNew">
-				<h:message for="tytul"/>
-				<h:message for="datestart"/>
-				<h:message for="datestart2"/>
-				<h:message for="dateend"/>
-				<h:message for="dateend2"/>
-				<h:message for="loca"/>
-				<h:message for="descset"/>
+			<h:form id="addingNew" enctype="multipart/form-data">
+			<h:message for="tytul"/>
+			<h:message for="datestart"/>
+			<h:message for="datestart2"/>
+			<h:message for="dateend"/>
+			<h:message for="dateend2"/>
+			<h:message for="loca"/>
+			<h:message for="descset"/>
 			
-	   			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
-					<p:outputLabel value="Title: ">
-						<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="	[Wymagany tytuł]	" id="tytul" maxlength="32"/>
+   			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
+				<p:outputLabel value="Title: ">
+					<h:inputText value="#{iCalBean.eventSample.eventTitle}" required="true" requiredMessage="	[Wymagany tytuł]	" id="tytul" maxlength="32"/>
+				</p:outputLabel>
+				<br/>
+				<p:outputLabel value="Whole day: ">
+					<h:selectBooleanCheckbox value="#{iCalBean.eventSample.wholeDay}" required="true" id="checker">
+						<p:ajax update="createDate"/>
+					</h:selectBooleanCheckbox>
+					<br/>
+				</p:outputLabel>
+				<h:panelGroup id="createDate">
+					<p:outputLabel value="Date start: " >
+						<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
+							required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart" maxdate="#{iCalBean.eventSample.dateEnd}">
+							<p:ajax event="dateSelect" update="dateend"></p:ajax>
+						</p:calendar>
+						<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
+							required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2" maxdate="#{iCalBean.eventSample.dateEnd}">
+							<p:ajax event="dateSelect" update="dateend2"></p:ajax>
+						</p:calendar>
 					</p:outputLabel>
 					<br/>
-					<p:outputLabel value="Whole day: ">
-						<h:selectBooleanCheckbox value="#{iCalBean.eventSample.wholeDay}" required="true" id="checker">
-							<p:ajax update="createDate"/>
-						</h:selectBooleanCheckbox>
-						<br/>
-					</p:outputLabel>
-					<h:panelGroup id="createDate">
-						<p:outputLabel value="Date start: " >
-							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart" maxdate="#{iCalBean.eventSample.dateEnd}">
-									<p:ajax event="dateSelect" update="dateend"></p:ajax>
-							</p:calendar>
-							<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2" maxdate="#{iCalBean.eventSample.dateEnd}">
-									<p:ajax event="dateSelect" update="dateend2"></p:ajax>
-							</p:calendar>
-						</p:outputLabel>
-						<br/>
-						<p:outputLabel value="Date end: " >
-							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend" mindate="#{iCalBean.eventSample.dateStart}">
-									<p:ajax event="dateSelect" update="datestart"></p:ajax>
-							</p:calendar>
-							<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
-								required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2" mindate="#{iCalBean.eventSample.dateStart}">
-									<p:ajax event="dateSelect" update="datestart2"></p:ajax>
-							</p:calendar>
-						</p:outputLabel>
-						<br/>
-					</h:panelGroup>
-					<p:outputLabel value="Location: ">
-						<h:inputText value="#{iCalBean.eventSample.location}" 
-							required="true" requiredMessage="	[Wymagana lokalizacja]	" id="loca" maxlength="32"/>
+					<p:outputLabel value="Date end: " >
+						<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
+							required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend" mindate="#{iCalBean.eventSample.dateStart}">
+								<p:ajax event="dateSelect" update="datestart"></p:ajax>
+						</p:calendar>
+						<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
+							required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2" mindate="#{iCalBean.eventSample.dateStart}">
+								<p:ajax event="dateSelect" update="datestart2"></p:ajax>
+						</p:calendar>
 					</p:outputLabel>
 					<br/>
-					<p:outputLabel value="Description:"/>
-					<br/>
-					<h:inputTextarea value="#{iCalBean.eventSample.description}" 
-						required="true" requiredMessage="	[Wymagany opis]	" id="descset"
-						maxlength="150" style="height:200px;width:400px;"/>
-					<br/>
-					<br/>
-					<br/>
-					<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" > <!-- ROBIMY TU -->
-					</h:commandButton>
-					<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/> <!-- ROBIMY TU -->
-				</p:overlayPanel>
-				<div class="buttons">
+				</h:panelGroup>
+				<p:outputLabel value="Location: ">
+					<h:inputText value="#{iCalBean.eventSample.location}" 
+						required="true" requiredMessage="	[Wymagana lokalizacja]	" id="loca" maxlength="32"/>
+				</p:outputLabel>
+				<br/>
+				<p:outputLabel value="Description:"/>
+				<br/>
+				<h:inputTextarea value="#{iCalBean.eventSample.description}" 
+					required="true" requiredMessage="	[Wymagany opis]	" id="descset"
+					maxlength="150" style="height:200px;width:400px;"/>
+				<br/>
+				<br/>
+				<br/>
+				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" > <!-- ROBIMY TU -->
+				</h:commandButton>
+				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/> <!-- ROBIMY TU -->
+			</p:overlayPanel>
+			<p:overlayPanel id="loadPanel" for="loader" hideEffect="fade" dynamic="true" style="width:500px">
+				<p:outputLabel value="From File: " for="fromFile"/>
+				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"/>
+				<h:commandButton action="#{iCalBean.loadFile.load()}" value="Load File"/>
+				<br/><br/>
+				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
+			</p:overlayPanel>
+			<div class="buttons">
 				<p:commandButton id="newButton" value="New Event" styleClass="bigButton" type="button"/>
 				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="bigButton" ajax="false"/>
 				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="bigButton" ajax="false"/>
-				<p:menuButton value="Load iCal" ajax="false">
-       			<p:menuitem url="upload.jsf" value="From file" ajax="false"/>
-    			<p:menuitem value="From site" ajax="false"/>
-    			<p:menuitem value="From URL" ajax="false"/>
-    			</p:menuButton>
-    			<h:commandButton action="#{iCalBean.readFromICalFile()}" value="tmp" />
-				</div>
-				</h:form>
+				<p:commandButton id="loader" value="Load" styleClass="bigButton" type="button"/>
+				
+			</div>
+			</h:form>
 		</div><!--#AddNew-->
-		
 		
 		<div id="viewEvents">
 			<fieldset>
