@@ -76,14 +76,14 @@
 				<br/>
 				<br/>
 				<br/>
-				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" > <!-- ROBIMY TU -->
+				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" >
 				</h:commandButton>
-				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/> <!-- ROBIMY TU -->
+				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/>
 			</p:overlayPanel>
-			<p:overlayPanel id="loadPanel" for="loader" hideEffect="fade" dynamic="true" style="width:500px">
+			<p:overlayPanel id="loadPanel" for="loader" hideEffect="fade" dynamic="true">
 				<p:outputLabel value="From File: " for="fromFile"/>
 				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"/>
-				<h:commandButton action="#{iCalBean.loadFile.load()}" value="Load File"/>
+				<h:commandButton  action="#{iCalBean.loadFile.load()}" value="Load File"  styleClass="mediumButton" style="position:absolute; top:54px; right:22px;"/>
 				<br/><br/>
 				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
 			</p:overlayPanel>
@@ -92,7 +92,6 @@
 				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="bigButton" ajax="false"/>
 				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="bigButton" ajax="false"/>
 				<p:commandButton id="loader" value="Load" styleClass="bigButton" type="button"/>
-				
 			</div>
 			</h:form>
 		</div><!--#AddNew-->
@@ -120,7 +119,7 @@
 	        			<f:facet name="header">
 	        				<h:commandLink action="#{iCalBean.sortByDateStart()}">Date Start</h:commandLink>
 	        			</f:facet>
-	    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable and not event.wholeDay}" >
+	    				<h:outputText value="#{event.dateStart}" rendered="#{not event.editable and not event.wholeDay}">
 							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="GMT+2"/>
 						</h:outputText>
 						<h:outputText value="#{event.dateStart}" rendered="#{not event.editable and event.wholeDay}" >
