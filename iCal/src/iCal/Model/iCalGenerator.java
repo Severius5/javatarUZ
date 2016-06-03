@@ -101,14 +101,13 @@ public class iCalGenerator {
 			if(e.isWholeDay()) {
 //				Date endDate = incrementDate(e.getDateEnd());
 				builder.append(eventBegin);
-				builder.append("DTSTART;VALUE=DATE:" + resetHours(e.getDateStart())+"\r\n");
-				builder.append("DTEND;VALUE=DATE:" + resetHours(e.getDateEnd())+"\r\n");
+				builder.append("DTSTART;VALUE=DATE:" + removeHours(e.getDateStart())+"\r\n");
+				builder.append("DTEND;VALUE=DATE:" + removeHours(e.getDateEnd())+"\r\n");
 				builder.append("SUMMARY:"+e.getEventTitle()+"\r\n");
 				builder.append("LOCATION:"+e.getLocation()+"\r\n");
 				builder.append("DESCRIPTION:"+e.getDescription()+"\r\n");
 				builder.append(eventEnd);
 					
-				
 			} else {
 				builder.append(eventBegin);
 				builder.append("DTSTART:" + formatDate(e.getDateStart())+"\r\n");
@@ -181,12 +180,11 @@ public class iCalGenerator {
 	 * @param date
 	 * @return date the date
 	 */
-	private String resetHours(Date date) {
+	private String removeHours(Date date) {
 		String dateString = formatDate(date);
 		int startIndex = dateString.indexOf("T");
-		int endIndex = dateString.indexOf("Z");
-		String replacement = "000000";
-		String toBeReplaced = dateString.substring(startIndex + 1, endIndex);
+		String replacement = "";
+		String toBeReplaced = dateString.substring(startIndex, dateString.length());
 		dateString = dateString.replace(toBeReplaced, replacement);
 		return dateString;
 	}
