@@ -227,6 +227,16 @@ a#taiga:hover {
 .scrollToTop:hover{
 	text-decoration:none;
 }
+#whiteBox{
+	display:inline-block;
+	position:absolute;
+	left:269px;
+	top:12px;
+	width:110px; 
+	height:26px;
+	background-color:white;
+	color:red;
+}
 .ui-messages-error.ui-message-error {
 	color:#D8000C;
 	background-color:#fff!important;
