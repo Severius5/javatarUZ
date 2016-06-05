@@ -230,12 +230,11 @@ a#taiga:hover {
 #whiteBox{
 	display:inline-block;
 	position:absolute;
-	left:269px;
-	top:12px;
-	width:110px; 
-	height:26px;
+	left:251px;
+	top:10px;
+	width:115px; 
+	height:30px;
 	background-color:white;
-	color:red;
 }
 .ui-messages-error.ui-message-error {
 	color:#D8000C;

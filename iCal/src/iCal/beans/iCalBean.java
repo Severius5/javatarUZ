@@ -24,7 +24,8 @@ import iCal.data.Event;
  * @author ?
  * @version ?
  * @see List
- * @see Event
+ * @see Collections
+ * @see Comparator
  * @since ?
  */
 @ManagedBean
@@ -77,10 +78,19 @@ public class iCalBean {
 		return eventSample;
 	}
 	
+	/**
+	 * This method allows to return loaded file.
+	 * @return loadFile
+	 */
 	public LoadFile getLoadFile() {
 		return loadFile;
 	}
 
+	/**
+	 * This method allows to set file to be loaded.
+	 * 
+	 * @param loadFile
+	 */
 	public void setLoadFile(LoadFile loadFile) {
 		this.loadFile = loadFile;
 	}
@@ -96,6 +106,11 @@ public class iCalBean {
 
 	/**
 	 * This method allows to add the event.
+	 * <p>
+	 * Method checks ff an event was added. If it was not an appropriate message would be shown.
+	 * Then the method <code>clearEventSample</code> is called in order to empty the sample. At the end
+	 * events are sorted by <code>sortingDateStartByAsc</code> method.
+	 * 
 	 */
 	public void addEvent() {
 		if (!eventList.add(eventSample)) {
@@ -191,6 +206,13 @@ public class iCalBean {
 
 	}
 
+	/**
+	 * This method allows to sort events located in <code>eventList</code> by a title.
+	 * <p>
+	 * List of events is sorted by getting titles of two objects of the <code>Event</code> class and 
+	 * comparing them using {@link Comparator}.
+	 * If comparison return a positive value then events change places in the list.
+	 */
 	public void sortByTitle(){
 		if(sortTitleAsc){
 			Collections.sort(eventList, new Comparator<Event>(){
@@ -215,6 +237,13 @@ public class iCalBean {
 		}
 	}
 	
+	/**
+	 * This method allows to sort events located in <code>eventList</code> by starting date.
+	 * <p>
+	 * List of events is sorted by getting date of the start of two objects of the <code>Event</code> class and 
+	 * comparing them using {@link Comparator}.
+	 * If comparison return a positive value then events change places in the list.
+	 */
 	public void sortByDateStart(){
 		if(sortDateStartAsc){
 			sortingDateStartByAsc();
@@ -231,7 +260,15 @@ public class iCalBean {
 			sortDateStartAsc = true;
 		}
 	}
-
+	
+	/**
+	 * This method allows to sort events located in <code>eventList</code> by ascending starting date.
+	 * <p>
+	 * List of events is sorted by getting date of the start of two objects of the <code>Event</code> class and 
+	 * comparing them using {@link Comparator}.
+	 * If comparison return a positive value then the event with an older date changes place in the list with the
+	 * event with a younger date. 
+	 */
 	private void sortingDateStartByAsc() {
 		Collections.sort(eventList, new Comparator<Event>(){
 
@@ -243,6 +280,13 @@ public class iCalBean {
 		});
 	}
 	
+	/**
+	 * This method allows to sort events located in <code>eventList</code> by ending date.
+	 * <p>
+	 * List of events is sorted by getting starting date of two objects of the <code>Event</code> class and 
+	 * comparing them using {@link Comparator}.
+	 * If comparison return a positive value then events change places in the list.
+	 */
 	public void sortByDateEnd(){
 		if(sortDateEndAsc){
 			Collections.sort(eventList, new Comparator<Event>(){
