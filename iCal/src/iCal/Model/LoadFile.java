@@ -19,21 +19,18 @@ public class LoadFile {
 	private ParseICalFile iCal;
 	private Part file;
 	private String text;
+	
 	public LoadFile(List<Event> list) {
 		iCal = new ParseICalFile(list);
 	}
-
-	
 
 	public String getText() {
 		return text;
 	}
 
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
 
 	public Part getFile() {
 		return file;
@@ -41,7 +38,6 @@ public class LoadFile {
 
 	public void setFile(Part file) {
 		this.file = file;
-		
 		
 	}
 	public void load() {
@@ -59,6 +55,8 @@ public class LoadFile {
 
 			if (file.getSubmittedFileName().substring(dot + 1).equals("ics")) {
 				iCal.readICal(test);
+			} else {
+				iCal.readXCal(test);
 			}
 
 		} catch (IOException e) {
