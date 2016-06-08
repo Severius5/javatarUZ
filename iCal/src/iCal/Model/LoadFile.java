@@ -16,20 +16,20 @@ import iCal.data.Event;
 @SessionScoped
 public class LoadFile {
 
-	private ParseICalFile iCal;
+	private ParseFile parseFile;
 	private Part file;
-	private String text;
-	
+	private String url;
+
 	public LoadFile(List<Event> list) {
-		iCal = new ParseICalFile(list);
+		parseFile = new ParseFile(list);
 	}
 
-	public String getText() {
-		return text;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public Part getFile() {
@@ -38,8 +38,9 @@ public class LoadFile {
 
 	public void setFile(Part file) {
 		this.file = file;
-		
+
 	}
+
 	public void load() {
 		try (InputStream input = file.getInputStream()) {
 			int dot = file.getSubmittedFileName().lastIndexOf('.');
@@ -51,12 +52,12 @@ public class LoadFile {
 				sb.append(line);
 				sb.append("\r\n");
 			}
-			String test = sb.toString();
+			String stringFile = sb.toString();
 
 			if (file.getSubmittedFileName().substring(dot + 1).equals("ics")) {
-				iCal.readICal(test);
+				parseFile.readICal(stringFile);
 			} else {
-				iCal.readXCal(test);
+				parseFile.readXCal(stringFile);
 			}
 
 		} catch (IOException e) {

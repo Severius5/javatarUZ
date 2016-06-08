@@ -8,13 +8,13 @@
 
 <h:head>
 	<title>iCal</title>
-	<link rel="stylesheet" type="text/css" href="style.css"></link>
-	<link rel="stylesheet" type="text/css" href="Fontello/css/icons.css"></link>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="Fontello/css/icons.css"/>
 </h:head> 
 <h:body>
 
 	<div id="container">
-		<div id="mainHeader"><i class="demo-icon icon-table"></i> Generator iCal</div>
+		<div id="mainHeader"><i class="demo-icon icon-table"/> Generator iCal</div>
 		<a href="https://github.com/javatarUZ/javatarUZ" id="git">GitHub</a>
 		<a href="https://tree.taiga.io/project/gatoke-javataruz" id="taiga" >Taiga</a>
 		
@@ -25,8 +25,6 @@
 			<h:message for="datestart2"/>
 			<h:message for="dateend"/>
 			<h:message for="dateend2"/>
-			<h:message for="loca"/>
-			<h:message for="descset"/>
 			
    			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
 				<p:outputLabel value="Title: ">
@@ -43,52 +41,48 @@
 					<p:outputLabel value="Date start: " >
 						<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
 							required="true" requiredMessage="	[Wymagana data/czas startu]		" id="datestart" maxdate="#{iCalBean.eventSample.dateEnd}">
-							<p:ajax event="dateSelect" update="dateend"></p:ajax>
+							<p:ajax event="dateSelect" update="dateend"/>
 						</p:calendar>
 						<p:calendar value="#{iCalBean.eventSample.dateStart}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
 							required="true" requiredMessage="	[Wymagana data startu]	" id="datestart2" maxdate="#{iCalBean.eventSample.dateEnd}">
-							<p:ajax event="dateSelect" update="dateend2"></p:ajax>
+							<p:ajax event="dateSelect" update="dateend2"/>
 						</p:calendar>
 					</p:outputLabel>
 					<br/>
 					<p:outputLabel value="Date end: " >
 						<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{!iCalBean.eventSample.wholeDay}"
 							required="true" requiredMessage="	[Podaj datę/czas końca]		" id="dateend" mindate="#{iCalBean.eventSample.dateStart}">
-								<p:ajax event="dateSelect" update="datestart"></p:ajax>
+								<p:ajax event="dateSelect" update="datestart"/>
 						</p:calendar>
 						<p:calendar value="#{iCalBean.eventSample.dateEnd}" pattern="dd/MM/yyyy" rendered="#{iCalBean.eventSample.wholeDay}"
 							required="true" requiredMessage="	[Podaj datę końca]		" id="dateend2" mindate="#{iCalBean.eventSample.dateStart}">
-								<p:ajax event="dateSelect" update="datestart2"></p:ajax>
+								<p:ajax event="dateSelect" update="datestart2"/>
 						</p:calendar>
 					</p:outputLabel>
 					<br/>
 				</h:panelGroup>
 				<p:outputLabel value="Location: ">
-					<h:inputText value="#{iCalBean.eventSample.location}" 
-						required="true" requiredMessage="	[Wymagana lokalizacja]	" id="loca" maxlength="32"/>
+					<h:inputText value="#{iCalBean.eventSample.location}" maxlength="32"/>
 				</p:outputLabel>
 				<br/>
 				<p:outputLabel value="Description:"/>
 				<br/>
-				<h:inputTextarea value="#{iCalBean.eventSample.description}" 
-					required="true" requiredMessage="	[Wymagany opis]	" id="descset"
-					maxlength="150" style="height:200px;width:400px;"/>
+				<h:inputTextarea value="#{iCalBean.eventSample.description}" maxlength="150" style="height:200px;width:400px;"/>
 				<br/>
 				<br/>
 				<br/>
-				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton" >
-				</h:commandButton>
+				<h:commandButton action="#{iCalBean.addEvent}" value="Add event" styleClass="mediumButton"/>
 				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('newPanel').hide()"/>
 			</p:overlayPanel>
 			
 			<p:overlayPanel id="loadPanel" for="loader" hideEffect="fade" dynamic="true">
 				<p:outputLabel value="From File: " for="fromFile"/>
 				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"/>
-				<div id="whiteBox"></div>
+				<div id="whiteBox"/>
 				<h:commandButton  action="#{iCalBean.loadFile.load()}" value="Load File"  styleClass="mediumButton" style="position:absolute; top:8px; right:22px;"/>
 				<br/><br/><br/>
 				<p:outputLabel value="From URL:" for="fromUrl"/>
-				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.text}" />
+				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.url}" />
 				<h:commandButton  value="Load URL" styleClass="mediumButton" style="position:absolute; top:64px; right:19px;"/>
 				<br/><br/><br/>
 				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
@@ -134,12 +128,12 @@
 						</h:outputText>
 	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
 	    					required="true" requiredMessage="Podaj datę startu" id="datestart" maxdate="#{event.dateEnd}">
-	    						<p:ajax event="dateSelect" update="dateend"></p:ajax>
+	    						<p:ajax event="dateSelect" update="dateend"/>
 	    				</p:calendar>
 	    					<br/><h:message for="datestart" styleClass="error"/>
 	    				<p:calendar value="#{event.dateStart}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}"
 	    					required="true" requiredMessage="Podaj datę/czas startu" id="datestart2" maxdate="#{event.dateEnd}">
-	    						<p:ajax event="dateSelect" update="dateend2"></p:ajax>
+	    						<p:ajax event="dateSelect" update="dateend2"/>
 	    				</p:calendar>
 	    					<br/><h:message for="datestart2" styleClass="error"/>
 	    			</h:column>
@@ -155,47 +149,45 @@
 						</h:outputText>
 						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy" rendered="#{event.editable and event.wholeDay}"
 							required="true" requiredMessage="Podaj datę/czas końca" id="dateend" mindate="#{event.dateStart}">
-								<p:ajax event="dateSelect" update="datestart"></p:ajax>
+								<p:ajax event="dateSelect" update="datestart"/>
 						</p:calendar>
 							<br/><h:message for="dateend" styleClass="error"/>
 						<p:calendar value="#{event.dateEnd}" pattern="dd/MM/yyyy HH:mm" rendered="#{event.editable and not event.wholeDay}" 
 							required="true" requiredMessage="Podaj datę końca" id="dateend2" mindate="#{event.dateStart}">
-								<p:ajax event="dateSelect" update="datestart2"></p:ajax>
+								<p:ajax event="dateSelect" update="datestart2"/>
 						</p:calendar>
 							<br/><h:message for="dateend2" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	      			  	<f:facet name="header">Description</f:facet>
-	    				<h:inputText value="#{event.description}" required="true" requiredMessage="wymagany opis" id="changedesc" rendered="#{event.editable}" />
+	    				<h:inputText value="#{event.description}" id="changedesc" rendered="#{event.editable}" />
 	    				<h:outputText value="#{event.description}" rendered="#{not event.editable}" />
-	    				<br/><h:message class="message" for="changedesc" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	       			 	<f:facet name="header">Location</f:facet>
-	    				<h:inputText value="#{event.location}" required="true" requiredMessage="wymagana lokalizacja" id="changeloc" rendered="#{event.editable}" />
+	    				<h:inputText value="#{event.location}" id="changeloc" rendered="#{event.editable}" />
 	    				<h:outputText value="#{event.location}" rendered="#{not event.editable}" />
-	    				<br/><h:message for="changeloc" styleClass="error"/>
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Copy</f:facet>
-	    				<h:commandLink class="smallButton" action="#{iCalBean.copyEvent(event)}"> <i class="demo-icon icon-docs"></i> </h:commandLink>
+	    				<h:commandLink class="smallButton" action="#{iCalBean.copyEvent(event)}"> <i class="demo-icon icon-docs"/> </h:commandLink>
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Delete</f:facet>
-	    				<h:commandLink class="smallButton" action="#{iCalBean.deleteEvent(event)}"> <i class="demo-icon icon-trash"></i> </h:commandLink>
+	    				<h:commandLink class="smallButton" action="#{iCalBean.deleteEvent(event)}"> <i class="demo-icon icon-trash"/> </h:commandLink>
 	    			</h:column>
 	    			<h:column>
 	        			<f:facet name="header">Edit</f:facet>
-	        			<h:commandLink class="smallButton" action="#{iCalBean.saveEventEdit(event)}" rendered="#{event.editable}">     <i class="demo-icon icon-floppy"> </i></h:commandLink>
-	    				<h:commandLink class="smallButton" action="#{iCalBean.editEventEdit(event)}" rendered="#{not event.editable}"> <i class="demo-icon icon-edit">   </i></h:commandLink>
+	        			<h:commandLink class="smallButton" action="#{iCalBean.saveEventEdit(event)}" rendered="#{event.editable}">    <i class="demo-icon icon-floppy"/></h:commandLink>
+	    				<h:commandLink class="smallButton" action="#{iCalBean.editEventEdit(event)}" rendered="#{not event.editable}"> <i class="demo-icon icon-edit"/></h:commandLink>
 	    			</h:column>
 				</h:dataTable>
 				</h:form>
 			</fieldset>
 		</div><!--#viewEvents-->
-		<a href="#" class="scrollToTop"><i class="demo-icon icon-up"></i></a>
-		<div id="footer">2016 <i class="demo-icon icon-graduation-cap"></i> Made by Best Students ever</div>
+		<a href="#" class="scrollToTop"><i class="demo-icon icon-up"/></a>
+		<div id="footer">2016 <i class="demo-icon icon-graduation-cap"/> Made by Best Students ever</div>
 	</div><!--#container-->
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="script.js"/>
 </h:body> 
 </html>

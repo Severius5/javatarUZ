@@ -3,19 +3,17 @@ package iCal.data;
 import java.util.Calendar;
 import java.util.Date;
 
-
 public class Event {
+
 	private String eventTitle;
 	private boolean wholeDay;
-	// Data format 2007-12-03T10:15:30.
 	private Date dateStart;
 	private Date dateEnd;
 	private String description;
 	private String location;
 	private boolean editable;
 	private Calendar currentDate;
-	
-	
+
 	public Event() {
 		setEventTitle("Title");
 		setWholeDay(false);
@@ -25,8 +23,8 @@ public class Event {
 		setLocation("Location");
 	}
 
-	public Event(String eventTittle, boolean wholeDay, Date dateStart, Date dateEnd,
-			String description, String location) {
+	public Event(String eventTittle, boolean wholeDay, Date dateStart, Date dateEnd, String description,
+			String location) {
 		setEventTitle(eventTittle);
 		setWholeDay(wholeDay);
 		setDateStart(dateStart);
@@ -34,8 +32,8 @@ public class Event {
 		setDescription(description);
 		setLocation(location);
 	}
-	
-	public Event(Event event){
+
+	public Event(Event event) {
 		setEventTitle(event.getEventTitle());
 		setWholeDay(event.isWholeDay());
 		setDateStart(event.getDateStart());

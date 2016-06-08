@@ -114,7 +114,7 @@ public class iCalBean {
 	 */
 	public void addEvent() {
 		if (!eventList.add(eventSample)) {
-			System.out.println("[ERROR - iCalBean.addEvent] Nie dodano eventu");
+			System.err.println("[iCalBean.addEvent] Nie dodano eventu");
 		}
 		clearEventSample();
 		sortingDateStartByAsc();

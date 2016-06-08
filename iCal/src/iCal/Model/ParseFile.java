@@ -12,11 +12,11 @@ import biweekly.property.Summary;
 import biweekly.util.Duration;
 import iCal.data.Event;
 
-public class ParseICalFile {
+public class ParseFile {
 
 	private List<Event> eventList;
 
-	public ParseICalFile(List<Event> eventList) {
+	public ParseFile(List<Event> eventList) {
 		this.eventList = eventList;
 	}
 
@@ -37,8 +37,8 @@ public class ParseICalFile {
 			}
 		}
 	}
-	
-	public void readXCal(String in){
+
+	public void readXCal(String in) {
 		List<ICalendar> ical = Biweekly.parseXml(in).all();
 
 		for (ICalendar object : ical) {
@@ -46,22 +46,22 @@ public class ParseICalFile {
 			for (VEvent prop : event) {
 
 				Summary summary = prop.getSummary();
-	            String eventTittle = (summary == null) ? "Title" : summary.getValue();
-	            Description desc = prop.getDescription();
-				String description = (desc == null ) ? "Description" : desc.getValue();
+				String eventTittle = (summary == null) ? "Title" : summary.getValue();
+				Description desc = prop.getDescription();
+				String description = (desc == null) ? null : desc.getValue();
 				Location loc = prop.getLocation();
-				String location = (loc == null) ? "Location" : loc.getValue();
-	            
+				String location = (loc == null) ? null : loc.getValue();
+
 				Duration duration = Duration.parse(prop.getDuration().getValue().toString());
 				Date dateStart = prop.getDateStart().getValue();
 				Date dateEnd = duration.add(dateStart);
 				Boolean wholeDay = isEventAllDay(dateStart, dateEnd);
-				
+
 				eventList.add(new Event(eventTittle, wholeDay, dateStart, dateEnd, description, location));
 			}
 		}
 	}
-	
+
 	private boolean isEventAllDay(Date start, Date end) {
 		String dtStart = start.toString();
 		String dtEnd = end.toString();
