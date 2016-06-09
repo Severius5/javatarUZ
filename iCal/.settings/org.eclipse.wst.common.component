@@ -9,6 +9,9 @@
         <dependent-module archiveName="biweekly-0.4.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/iCal/libs/biweekly-0.4.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jsoup-1.9.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/iCal/libs/jsoup-1.9.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="iCal"/>
         <property name="java-output-path" value="/iCal/build/classes"/>
     </wb-module>

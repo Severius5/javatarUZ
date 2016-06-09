@@ -17,11 +17,13 @@ import iCal.data.Event;
 public class LoadFile {
 
 	private ParseFile parseFile;
+	private UZScheduleParser uzParser;
 	private Part file;
 	private String url;
 
 	public LoadFile(List<Event> list) {
 		parseFile = new ParseFile(list);
+		uzParser = new UZScheduleParser(list);
 	}
 
 	public String getUrl() {
@@ -59,9 +61,15 @@ public class LoadFile {
 			} else {
 				parseFile.readXCal(stringFile);
 			}
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void loadUrl(){
+		if (url != null){
+			uzParser.connect(url);
 		}
 	}
 

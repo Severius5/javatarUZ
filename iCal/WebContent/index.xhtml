@@ -83,7 +83,7 @@
 				<br/><br/><br/>
 				<p:outputLabel value="From URL:" for="fromUrl"/>
 				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.url}" />
-				<h:commandButton  value="Load URL" styleClass="mediumButton" style="position:absolute; top:64px; right:19px;"/>
+				<h:commandButton  value="Load URL" styleClass="mediumButton" style="position:absolute; top:64px; right:19px;" action="#{iCalBean.loadFile.loadUrl()}"/>
 				<br/><br/><br/>
 				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
 				<br/><br/>
