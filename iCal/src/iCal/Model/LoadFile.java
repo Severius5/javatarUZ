@@ -44,26 +44,28 @@ public class LoadFile {
 	}
 
 	public void load() {
-		try (InputStream input = file.getInputStream()) {
-			int dot = file.getSubmittedFileName().lastIndexOf('.');
+		if (file != null) {
+			try (InputStream input = file.getInputStream()) {
+				int dot = file.getSubmittedFileName().lastIndexOf('.');
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(input));
-			String line;
-			StringBuffer sb = new StringBuffer();
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-				sb.append("\r\n");
-			}
-			String stringFile = sb.toString();
+				BufferedReader br = new BufferedReader(new InputStreamReader(input));
+				String line;
+				StringBuffer sb = new StringBuffer();
+				while ((line = br.readLine()) != null) {
+					sb.append(line);
+					sb.append("\r\n");
+				}
+				String stringFile = sb.toString();
 
-			if (file.getSubmittedFileName().substring(dot + 1).equals("ics")) {
-				parseFile.readICal(stringFile);
-			} else {
-				parseFile.readXCal(stringFile);
+				if (file.getSubmittedFileName().substring(dot + 1).equals("ics")) {
+					parseFile.readICal(stringFile);
+				} else {
+					parseFile.readXCal(stringFile);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	

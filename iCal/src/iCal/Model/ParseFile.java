@@ -52,9 +52,17 @@ public class ParseFile {
 				Location loc = prop.getLocation();
 				String location = (loc == null) ? null : loc.getValue();
 
-				Duration duration = Duration.parse(prop.getDuration().getValue().toString());
 				Date dateStart = prop.getDateStart().getValue();
-				Date dateEnd = duration.add(dateStart);
+				Date dateEnd = null;
+				if (prop.getDuration() != null) {
+					Duration duration = Duration.parse(prop.getDuration().getValue().toString());
+					dateEnd = duration.add(dateStart);
+				} else if (prop.getDateEnd() != null) {
+					dateEnd = prop.getDateEnd().getValue();
+				} else {
+					dateEnd = dateStart;
+				}
+
 				Boolean wholeDay = isEventAllDay(dateStart, dateEnd);
 
 				eventList.add(new Event(eventTittle, wholeDay, dateStart, dateEnd, description, location));
