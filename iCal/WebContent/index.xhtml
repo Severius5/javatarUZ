@@ -25,6 +25,8 @@
 			<h:message for="datestart2"/>
 			<h:message for="dateend"/>
 			<h:message for="dateend2"/>
+			<h:message for="fromFile"/>
+			<h:message for="fromUrl"/>
 			
    			<p:overlayPanel id="newPanel" for="newButton" hideEffect="fade" dynamic="true" style="width:600px">
 				<p:outputLabel value="Title: ">
@@ -76,16 +78,20 @@
 			</p:overlayPanel>
 			
 			<p:overlayPanel id="loadPanel" for="loader" hideEffect="fade" dynamic="true">
-				<p:outputLabel value="From File: " for="fromFile"/>
-				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"/>
+				<p:outputLabel value="From File: " for="fromFile" />
+				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"> 
+					<f:validator validatorId="fileUploadValidator" for="fromFile"/>
+				</h:inputFile>
 				<div id="whiteBox"/>
 				<h:commandButton  action="#{iCalBean.loadFile.load()}" value="Load File"  styleClass="mediumButton" style="position:absolute; top:8px; right:22px;"/>
 				<br/><br/><br/>
 				<p:outputLabel value="From URL:" for="fromUrl"/>
-				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.url}" />
+				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.url}"/>
 				<h:commandButton  value="Load URL" styleClass="mediumButton" style="position:absolute; top:64px; right:19px;" action="#{iCalBean.loadFile.loadUrl()}"/>
 				<br/><br/><br/>
-				<h:commandButton ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
+				<h:commandButton immediate="true" ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
+					
+				
 				<br/><br/>
 			</p:overlayPanel>
 			<div class="buttons">
