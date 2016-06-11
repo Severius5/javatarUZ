@@ -46,7 +46,6 @@ public class LoadFile {
 	public void load() {
 		if (file != null) {
 			try (InputStream input = file.getInputStream()) {
-				int dot = file.getSubmittedFileName().lastIndexOf('.');
 
 				BufferedReader br = new BufferedReader(new InputStreamReader(input));
 				String line;
@@ -57,7 +56,7 @@ public class LoadFile {
 				}
 				String stringFile = sb.toString();
 
-				if (file.getSubmittedFileName().substring(dot + 1).equals("ics")) {
+				if(file.getSubmittedFileName().endsWith("ics")){
 					parseFile.readICal(stringFile);
 				} else {
 					parseFile.readXCal(stringFile);
