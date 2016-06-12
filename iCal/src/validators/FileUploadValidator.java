@@ -22,7 +22,7 @@ public class FileUploadValidator implements Validator {
 			if (file == null || file.getContentType().isEmpty())
 				message = new FacesMessage("Wymagany plik.");
 
-			else if ((!file.getContentType().endsWith("calendar")) && (!file.getContentType().endsWith("xml")))
+			else if ((!file.getSubmittedFileName().endsWith("ics")) && (!file.getSubmittedFileName().endsWith("xml")))
 				message = new FacesMessage("Tylko pliki z rozszerzeniem .ics lub .xml");
 
 			if (message != null && !message.getDetail().isEmpty()) {
