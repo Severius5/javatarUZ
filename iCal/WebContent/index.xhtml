@@ -82,25 +82,25 @@
 				<h:inputFile value="#{iCalBean.loadFile.file}" mode="simple" id="fromFile" allowTypes="/(\.|\/)(ics|xml))$/"> 
 					<f:validator validatorId="fileUploadValidator" for="fromFile"/>
 				</h:inputFile>
-				<div id="whiteBox"/>
-				<h:commandButton id="loadfilebutton" action="#{iCalBean.loadFile.load()}" value="Load File"  styleClass="mediumButton" style="position:absolute; top:75px; right:22px;"/>
+				
+				<h:commandButton id="loadfilebutton" action="#{iCalBean.loadFile.load()}" value="Load File"  styleClass="mediumButton" style="position:absolute; top:80px; right:30px;"/>
 				<br/><br/><br/>
 				<h:commandButton  immediate="true" ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
 				<br/><br/>
 			</p:overlayPanel>
 
-			<p:overlayPanel id="loadPanel2" for="loader2" hideEffect="fade" dynamic="true">
+			<p:overlayPanel id="loadPanel2" for="loader2" hideEffect="fade" dynamic="true" style="width:300px">
 				<p:outputLabel value="From URL:" for="fromUrl"/>
 				<h:inputText id="fromUrl" value="#{iCalBean.loadFile.url}">
 					<f:validator validatorId="urlUploadValidator" for="fromUrl"/>
 				</h:inputText>
-				<h:commandButton id="loadurlbutton" value="Load URL" styleClass="mediumButton" style="position:absolute; top:72px; right:19px;" action="#{iCalBean.loadFile.loadUrl()}"/>	
+				<h:commandButton id="loadurlbutton" value="Load URL" styleClass="mediumButton" style="position:absolute; top:80px; right:20px;" action="#{iCalBean.loadFile.loadUrl()}"/>	
 				<br/><br/><br/>
 				<h:commandButton  immediate="true" ajax="false" value="Close" styleClass="mediumButton" onclick="jQuery('loadPanel').hide()"/>
 				<br/><br/>
 			</p:overlayPanel>
 			
-	<div class="buttons">
+			<div class="buttons">
 				<p:commandButton id="newButton" value="New Event" styleClass="bigButton" type="button"/>
 				<p:commandButton action="#{iCalBean.clearEvents()}" value="Clear All" styleClass="bigButton" ajax="false"/>
 				<p:commandButton action="#{iCalBean.generateICal()}" value="Generate" styleClass="bigButton" ajax="false"/>
