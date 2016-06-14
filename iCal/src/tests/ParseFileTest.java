@@ -1,5 +1,6 @@
 package tests;
 
+
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
@@ -44,7 +45,7 @@ public class ParseFileTest {
 		List<Event> eventList = new LinkedList<Event>();
 		ParseFile parsefile = new ParseFile(eventList);
 		// TESTUJE 4 PLIKI .xml//
-		setFile("C:/Users/Karol/git/javatarUZ/iCal/src/test1.xml"); // PLIK
+		setFile("XMLFiles/test1.xml"); // PLIK
 																	// test1.xml
 																	// POSIADA 2
 																	// EVENTY
@@ -56,7 +57,7 @@ public class ParseFileTest {
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("C:/Users/Karol/git/javatarUZ/iCal/src/test2.xml"); // PLIK
+		setFile("XMLFiles/test2.xml"); // PLIK
 																	// test2.xml
 																	// POSIADA 1
 																	// EVENT
@@ -66,7 +67,7 @@ public class ParseFileTest {
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("C:/Users/Karol/git/javatarUZ/iCal/src/test3.xml"); // PLIK
+		setFile("XMLFiles/test3.xml"); // PLIK
 																	// test3.xml
 																	// POSIADA 1
 																	// EVENT
@@ -76,7 +77,7 @@ public class ParseFileTest {
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("C:/Users/Karol/git/javatarUZ/iCal/src/test4.xml"); // PLIK
+		setFile("XMLFiles/test4.xml"); // PLIK
 																	// test4.xml
 																	// POSIADA 1
 																	// EVENT
