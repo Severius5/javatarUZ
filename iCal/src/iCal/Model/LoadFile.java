@@ -21,6 +21,9 @@ public class LoadFile {
 	private Part file;
 	private String url;
 
+	public LoadFile() {
+	}
+
 	public LoadFile(List<Event> list) {
 		parseFile = new ParseFile(list);
 		uzParser = new UZScheduleParser(list);
@@ -56,7 +59,7 @@ public class LoadFile {
 				}
 				String stringFile = sb.toString();
 
-				if(file.getSubmittedFileName().endsWith("ics")){
+				if (file.getSubmittedFileName().endsWith("ics")) {
 					parseFile.readICal(stringFile);
 				} else {
 					parseFile.readXCal(stringFile);
@@ -67,9 +70,9 @@ public class LoadFile {
 			}
 		}
 	}
-	
-	public void loadUrl(){
-		if (url != null){
+
+	public void loadUrl() {
+		if (url != null) {
 			uzParser.connect(url);
 		}
 	}
