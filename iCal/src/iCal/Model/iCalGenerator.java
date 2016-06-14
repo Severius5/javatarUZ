@@ -167,12 +167,6 @@ public class iCalGenerator {
 	 * @param date
 	 * @return the date
 	 */
-	private Date incrementDate(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.add(Calendar.DATE, 1);
-		return cal.getTime();
-	}
 
 	/**
 	 * This method resets date String by changing replacing it with a different
@@ -197,6 +191,42 @@ public class iCalGenerator {
 	 */
 	public String getICal() {
 		return iCal;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public String getProdid() {
+		return prodid;
+	}
+
+	public String getCalBegin() {
+		return calBegin;
+	}
+
+	public String getCalEnd() {
+		return calEnd;
+	}
+
+	public String getEventBegin() {
+		return eventBegin;
+	}
+
+	public String getEventEnd() {
+		return eventEnd;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public String getiCal() {
+		return iCal;
+	}
+
+	public StringBuilder getBuilder() {
+		return builder;
 	}
 
 }
