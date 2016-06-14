@@ -74,6 +74,7 @@ public class LoadFile {
 	public void loadUrl() {
 		if (url != null) {
 			uzParser.connect(url);
+			url = null;
 		}
 	}
 
