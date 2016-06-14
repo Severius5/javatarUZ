@@ -103,4 +103,13 @@ public class Event {
 		Date currDate = currentDate.getTime();
 		return currDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Event [eventTitle=" + eventTitle + ", wholeDay=" + wholeDay + ", dateStart=" + dateStart + ", dateEnd="
+				+ dateEnd + ", description=" + description + ", location=" + location + ", editable=" + editable
+				+ ", currentDate=" + currentDate + "]";
+	}
+	
+	
 }

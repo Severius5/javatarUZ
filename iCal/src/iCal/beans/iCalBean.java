@@ -1,6 +1,8 @@
 package iCal.beans;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+//import java.io.OutputStream;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -18,7 +20,8 @@ import iCal.Model.iCalGenerator;
 import iCal.data.Event;
 
 /**
- * The ICalBean class consists of methods allowing user work on events, generate an ICal file and read from it.
+ * The ICalBean class consists of methods allowing user work on events, generate
+ * an ICal file and read from it.
  * <p>
  *
  * @author ?
@@ -31,26 +34,27 @@ import iCal.data.Event;
 @ManagedBean
 @SessionScoped
 public class iCalBean {
-	
+
 	// Data
 	private List<Event> eventList = new LinkedList<>();
-	
+
 	private Event eventSample = new Event();
 	private LoadFile loadFile = new LoadFile(eventList);
-	
-	private boolean sortTitleAsc = true; 
-	private boolean sortDateStartAsc = true; 
-	private boolean sortDateEndAsc = true; 
+
+	private boolean sortTitleAsc = true;
+	private boolean sortDateStartAsc = true;
+	private boolean sortDateEndAsc = true;
 
 	// Settery Gettery Konstruktor
 	/**
-	 * This constructor is used to add newly created Event object at the end of <code>eventList</code>.
+	 * This constructor is used to add newly created Event object at the end of
+	 * <code>eventList</code>.
 	 * 
 	 */
 	public iCalBean() {
 		eventList.add(new Event());
 	}
-	
+
 	/**
 	 * This method allows to get the event list.
 	 *
@@ -59,7 +63,7 @@ public class iCalBean {
 	public List<Event> getEventList() {
 		return eventList;
 	}
-	
+
 	/**
 	 * This method allows to set the event list.
 	 *
@@ -68,7 +72,7 @@ public class iCalBean {
 	public void setEventList(List<Event> eventList) {
 		this.eventList = eventList;
 	}
-	
+
 	/**
 	 * This method allows to get the event sample.
 	 *
@@ -77,9 +81,10 @@ public class iCalBean {
 	public Event getEventSample() {
 		return eventSample;
 	}
-	
+
 	/**
 	 * This method allows to return loaded file.
+	 * 
 	 * @return loadFile
 	 */
 	public LoadFile getLoadFile() {
@@ -94,7 +99,7 @@ public class iCalBean {
 	public void setLoadFile(LoadFile loadFile) {
 		this.loadFile = loadFile;
 	}
-	
+
 	/**
 	 * This method allows to set the event sample.
 	 *
@@ -107,9 +112,10 @@ public class iCalBean {
 	/**
 	 * This method allows to add the event.
 	 * <p>
-	 * Method checks ff an event was added. If it was not an appropriate message would be shown.
-	 * Then the method <code>clearEventSample</code> is called in order to empty the sample. At the end
-	 * events are sorted by <code>sortingDateStartByAsc</code> method.
+	 * Method checks ff an event was added. If it was not an appropriate message
+	 * would be shown. Then the method <code>clearEventSample</code> is called
+	 * in order to empty the sample. At the end events are sorted by
+	 * <code>sortingDateStartByAsc</code> method.
 	 * 
 	 */
 	public void addEvent() {
@@ -119,7 +125,7 @@ public class iCalBean {
 		clearEventSample();
 		sortingDateStartByAsc();
 	}
-	
+
 	/**
 	 * This method allows to clear the event sample.
 	 */
@@ -130,7 +136,8 @@ public class iCalBean {
 	/**
 	 * This method allows to copy a specified event.
 	 *
-	 * @param event the event
+	 * @param event
+	 *            the event
 	 */
 	public void copyEvent(Event event) {
 		eventList.add(new Event(event));
@@ -153,7 +160,8 @@ public class iCalBean {
 	}
 
 	/**
-	 * This method allows to set the <code>setEditable</code> method to true in order to save an <code>event</code>.
+	 * This method allows to set the <code>setEditable</code> method to true in
+	 * order to save an <code>event</code>.
 	 *
 	 * @param event
 	 */
@@ -162,7 +170,8 @@ public class iCalBean {
 	}
 
 	/**
-	 * This method allows to set the <code>setEditable</code> method to true in order to edit an <code>event</code>.
+	 * This method allows to set the <code>setEditable</code> method to true in
+	 * order to edit an <code>event</code>.
 	 *
 	 * @param event
 	 */
@@ -172,34 +181,39 @@ public class iCalBean {
 	}
 
 	/**
-	 * This method allows to download <code>eventList</code> from a server and save it as an ICal file.
+	 * This method allows to download <code>eventList</code> from a server and
+	 * save it as an ICal file.
 	 * <p>
-	 * The <code>context</code> object is set to the current instance of {@link FacesContext} and return
-	 *  the {@link ExternalContext} instance for this FacesContext instance..
-	 * It tries to get response from a server, then by using a <code>setContentType</code> method it downloads
-	 * specified content and sets a header using a <code>setHeader</code> method.
+	 * The <code>context</code> object is set to the current instance of
+	 * {@link FacesContext} and return the {@link ExternalContext} instance for
+	 * this FacesContext instance.. It tries to get response from a server, then
+	 * by using a <code>setContentType</code> method it downloads specified
+	 * content and sets a header using a <code>setHeader</code> method.
 	 * <p>
-	 * The binary data retrieved from a server is set to an <code>out</code> object and further the ICal file
-	 * is built.
+	 * The binary data retrieved from a server is set to an <code>out</code>
+	 * object and further the ICal file is built.
 	 *
-	 * @throws IOException if fails to receive response from an external server
+	 * @throws IOException
+	 *             if fails to receive response from an external server
 	 * @see HttpServletResponse
 	 */
 	public void generateICal() {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		context.responseReset();
+		context.setResponseContentType("application/force-download");
+		context.setResponseHeader("Content-Disposition", "attachment;filename=iCal.ics");
 		HttpServletResponse response = (HttpServletResponse) context.getResponse();
-		response.setContentType("application/force-download");
-		response.setHeader("Content-Disposition", "attachment;filename=iCal.ics");
-		
-		ServletOutputStream out;
-		try {
-			out = response.getOutputStream();
-
+		try (PrintWriter pr = response.getWriter()) {
+			// ServletOutputStream out = response.getOutputStream();
 			iCalGenerator generator = new iCalGenerator();
 			generator.buildCalendar(eventList);
 
-			out.println(generator.getICal());
-			out.close();
+			// out.write(generator.getICal().getBytes("UTF-8"));
+			pr.println(generator.getICal());
+
+			// out.println(generator.getICal());
+			FacesContext.getCurrentInstance().responseComplete();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -207,105 +221,110 @@ public class iCalBean {
 	}
 
 	/**
-	 * This method allows to sort events located in <code>eventList</code> by a title.
+	 * This method allows to sort events located in <code>eventList</code> by a
+	 * title.
 	 * <p>
-	 * List of events is sorted by getting titles of two objects of the <code>Event</code> class and 
-	 * comparing them using {@link Comparator}.
-	 * If comparison return a positive value then events change places in the list.
+	 * List of events is sorted by getting titles of two objects of the
+	 * <code>Event</code> class and comparing them using {@link Comparator}. If
+	 * comparison return a positive value then events change places in the list.
 	 */
-	public void sortByTitle(){
-		if(sortTitleAsc){
-			Collections.sort(eventList, new Comparator<Event>(){
+	public void sortByTitle() {
+		if (sortTitleAsc) {
+			Collections.sort(eventList, new Comparator<Event>() {
 
 				@Override
 				public int compare(Event o1, Event o2) {
 					return o1.getEventTitle().compareTo(o2.getEventTitle());
 				}
-				
+
 			});
 			sortTitleAsc = false;
-		}else{
-			Collections.sort(eventList, new Comparator<Event>(){
+		} else {
+			Collections.sort(eventList, new Comparator<Event>() {
 
 				@Override
 				public int compare(Event o1, Event o2) {
 					return o2.getEventTitle().compareTo(o1.getEventTitle());
 				}
-				
+
 			});
 			sortTitleAsc = true;
 		}
 	}
-	
+
 	/**
-	 * This method allows to sort events located in <code>eventList</code> by starting date.
+	 * This method allows to sort events located in <code>eventList</code> by
+	 * starting date.
 	 * <p>
-	 * List of events is sorted by getting date of the start of two objects of the <code>Event</code> class and 
-	 * comparing them using {@link Comparator}.
-	 * If comparison return a positive value then events change places in the list.
+	 * List of events is sorted by getting date of the start of two objects of
+	 * the <code>Event</code> class and comparing them using {@link Comparator}.
+	 * If comparison return a positive value then events change places in the
+	 * list.
 	 */
-	public void sortByDateStart(){
-		if(sortDateStartAsc){
+	public void sortByDateStart() {
+		if (sortDateStartAsc) {
 			sortingDateStartByAsc();
 			sortDateStartAsc = false;
-		}else{
-			Collections.sort(eventList, new Comparator<Event>(){
+		} else {
+			Collections.sort(eventList, new Comparator<Event>() {
 
 				@Override
 				public int compare(Event o1, Event o2) {
 					return o2.getDateStart().compareTo(o1.getDateStart());
 				}
-				
+
 			});
 			sortDateStartAsc = true;
 		}
 	}
-	
+
 	/**
-	 * This method allows to sort events located in <code>eventList</code> by ascending starting date.
+	 * This method allows to sort events located in <code>eventList</code> by
+	 * ascending starting date.
 	 * <p>
-	 * List of events is sorted by getting date of the start of two objects of the <code>Event</code> class and 
-	 * comparing them using {@link Comparator}.
-	 * If comparison return a positive value then the event with an older date changes place in the list with the
-	 * event with a younger date. 
+	 * List of events is sorted by getting date of the start of two objects of
+	 * the <code>Event</code> class and comparing them using {@link Comparator}.
+	 * If comparison return a positive value then the event with an older date
+	 * changes place in the list with the event with a younger date.
 	 */
 	private void sortingDateStartByAsc() {
-		Collections.sort(eventList, new Comparator<Event>(){
+		Collections.sort(eventList, new Comparator<Event>() {
 
 			@Override
 			public int compare(Event o1, Event o2) {
 				return o1.getDateStart().compareTo(o2.getDateStart());
 			}
-			
+
 		});
 	}
-	
+
 	/**
-	 * This method allows to sort events located in <code>eventList</code> by ending date.
+	 * This method allows to sort events located in <code>eventList</code> by
+	 * ending date.
 	 * <p>
-	 * List of events is sorted by getting starting date of two objects of the <code>Event</code> class and 
-	 * comparing them using {@link Comparator}.
-	 * If comparison return a positive value then events change places in the list.
+	 * List of events is sorted by getting starting date of two objects of the
+	 * <code>Event</code> class and comparing them using {@link Comparator}. If
+	 * comparison return a positive value then events change places in the list.
 	 */
-	public void sortByDateEnd(){
-		if(sortDateEndAsc){
-			Collections.sort(eventList, new Comparator<Event>(){
+	public void sortByDateEnd() {
+		if (sortDateEndAsc) {
+			Collections.sort(eventList, new Comparator<Event>() {
 
 				@Override
 				public int compare(Event o1, Event o2) {
 					return o1.getDateEnd().compareTo(o2.getDateEnd());
 				}
-				
+
 			});
 			sortDateEndAsc = false;
-		}else{
-			Collections.sort(eventList, new Comparator<Event>(){
+		} else {
+			Collections.sort(eventList, new Comparator<Event>() {
 
 				@Override
 				public int compare(Event o1, Event o2) {
 					return o2.getDateEnd().compareTo(o1.getDateEnd());
 				}
-				
+
 			});
 			sortDateEndAsc = true;
 		}

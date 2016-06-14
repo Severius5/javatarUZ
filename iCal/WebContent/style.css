@@ -72,13 +72,12 @@ a {
 a#git:hover {
     background: #555;
     color: white;
-    box-shadow:0 10px 40px #000;
+    box-shadow:0 5px 10px #444;
 }
 a#taiga:hover {
     background: #00B96A;
     color: white;
-    box-shadow:0 3px 6px 3px #ccc;
-    box-shadow:0 10px 40px #000;
+    box-shadow:0 5px 10px #444;
 }
 #addNew {
 	background:#222;
@@ -157,7 +156,7 @@ a#taiga:hover {
 }
 .mediumButton {
     margin:0 10px 10px 10px;
-    padding:6px 10px 23px 10px;
+    padding:3px 10px 23px 10px;
     height:18px;
     font-size:12px;
     border-radius:5px;
@@ -223,9 +222,12 @@ a#taiga:hover {
 	position:fixed;
 	bottom:75px;
 	right:40px;
+	opacity:0.5;
 }
 .scrollToTop:hover{
 	text-decoration:none;
+	transition-duration:1s;
+	opacity:0.9;
 }
 #whiteBox{
 	display:inline-block;
@@ -253,7 +255,7 @@ tr {
 	background:#fff;
 	margin-top:5px;
 	padding:10px;
-	box-shadow: 0 4px 8px 0 #ccc;
+	box-shadow: 0 4px 8px 0 #666;
 }
 table {
    	border-collapse: collapse;

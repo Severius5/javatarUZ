@@ -92,8 +92,8 @@ public class UZScheduleParser {
 			boolean wholeDay = false;
 			Date dateStart = null;
 			Date dateEnd = null;
-			String description = uzClass.uzName + "\r\n" + "Typ zajec: " + uzClass.uzType + "\r\nProwadz¹cy: "
-					+ uzClass.uzLecturer + "\r\nGrupa: " + uzClass.uzGroup;
+			String description = uzClass.uzName + " " + " Typ zajec: " + uzClass.uzType + " Prowadzacy: "
+					+ uzClass.uzLecturer + " Grupa: " + uzClass.uzGroup;
 			String location = uzClass.uzRoomNumber;
 			String dayfromDate = sdf.format(date);
 			if (uzClass.uzWeek.length() > 5) {
