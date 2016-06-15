@@ -10,9 +10,19 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * The Class UrlUploadValidator.
+ * 
+ * @author Kamil Radykowski
+ * @see HttpURLConnection
+ * @see URL
+ */
 @FacesValidator(value = "urlUploadValidator")
 public class UrlUploadValidator implements Validator {
 
+	/* (non-Javadoc)
+	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)
+	 */
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
@@ -37,6 +47,12 @@ public class UrlUploadValidator implements Validator {
 		}
 	}
 
+	/**
+	 * Checks if a website under given url responds.
+	 *
+	 * @param URLName the URL name
+	 * @return true, if successful
+	 */
 	static boolean exists(String URLName) {
 		try {
 			HttpURLConnection.setFollowRedirects(false);

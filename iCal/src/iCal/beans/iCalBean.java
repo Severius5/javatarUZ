@@ -24,7 +24,9 @@ import iCal.data.Event;
  * an ICal file and read from it.
  * <p>
  *
- * @author ?
+ * @author Sebastian Pieni¹¿ek
+ * @author Tomasz Cichocki
+ * @author Sebastian Perek
  * @version ?
  * @see List
  * @see Collections

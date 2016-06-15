@@ -15,7 +15,8 @@ import iCal.data.Event;
 /**
  * Parses a given data structures in order to add the new events to a list.
  * 
- * @author
+ * @author Sebastian Pieni¹¿ek
+ * @author 
  * @version
  * @see Date
  * @see List

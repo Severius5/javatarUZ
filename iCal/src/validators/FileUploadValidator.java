@@ -8,9 +8,23 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 
+/**
+ * The Class FileUploadValidator.
+ * 
+ * @author Kamil Radykowski
+ * @see Validator
+ * @see FacesMessage
+ * @see UIComponent
+ * @see FacesContext
+ * @see FacesValidator
+ * @see Part
+ */
 @FacesValidator(value = "fileUploadValidator")
 public class FileUploadValidator implements Validator {
 
+	/* (non-Javadoc)
+	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)
+	 */
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 		Part file = (Part) value;

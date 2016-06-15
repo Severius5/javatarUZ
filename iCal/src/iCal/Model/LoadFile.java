@@ -14,9 +14,10 @@ import iCal.data.Event;
 
 /**
  * Processes file to a calendar event loaded by user.
- * <p>
  * 
- * @author
+ * @author Sebastian Pieni¹¿ek
+ * @author Marcin Marynowski
+ * @author Sebastian Perek
  * @version
  * @see BufferedReader
  * @see List

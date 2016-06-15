@@ -17,7 +17,8 @@ import iCal.data.Event;
  * using {@link StringBuilder} will start to build a String containing desired
  * data.
  * 
- * @author ?
+ * @author Sebastian Perek
+ * @author Sebastian Pieni¹¿ek
  * @version
  * @see SimpleDateFormat
  * @see StringBuilder
