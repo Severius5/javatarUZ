@@ -24,6 +24,7 @@ public class iCalGeneratorTest {
 			new Date((2016 - 1901), 4, 4, 4, 4), "Test description", "Test Location");
 	Event event2 = new Event("Test Title", true, new Date((2016 - 1901), 05, 05), new Date((2016 - 1901), 05, 06),
 			"Test description", "Test Location");
+	
 
 	@Test
 	public void testCloseCalendar() {

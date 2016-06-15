@@ -64,8 +64,6 @@ public class iCalGenerator {
 	/** The builder object. */
 	private StringBuilder builder = new StringBuilder();
 
-	
-
 	/**
 	 * This method opens new calendar and adds first data to it, that is
 	 * <code>version</code>, <code>prodid</code>, and <code>timeZone</code>
@@ -198,7 +196,7 @@ public class iCalGenerator {
 	public StringBuilder getBuilder() {
 		return builder;
 	}
-	
+
 	public void setBuilder(String string) {
 		builder.append(string);
 	}
