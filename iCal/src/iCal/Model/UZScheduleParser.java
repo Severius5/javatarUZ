@@ -76,14 +76,14 @@ public class UZScheduleParser {
 		}
 	}
 
-	private Date incrementDate(Date date) {
+	public Date incrementDate(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DATE, 1);
 		return cal.getTime();
 	}
 
-	private void createEvents(ArrayList<Classes> uzClassesList) {
+	public void createEvents(ArrayList<Classes> uzClassesList) {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy; / HH:mm");
@@ -116,7 +116,7 @@ public class UZScheduleParser {
 		}
 	}
 
-	private Date addTimeToDate(Date date, String time) {
+	public Date addTimeToDate(Date date, String time) {
 		String hrs = time.substring(0, 2);
 		String mins = time.substring(3, 5);
 		Calendar cal = Calendar.getInstance();
@@ -128,16 +128,11 @@ public class UZScheduleParser {
 		return cal.getTime();
 	}
 
-	public void parseToEvent() {
-		for (Event event : uzEventsList) {
-		}
-	}
-
 	private int countElements(Element elem) {
 		return elem.select("td").size();
 	}
 
-	private class Classes {
+	public class Classes {
 
 		private String day;
 		private String uzStart;
@@ -170,9 +165,57 @@ public class UZScheduleParser {
 					+ uzLecturer + ", uzRoomNumber=" + uzRoomNumber + "]";
 		}
 
+		public String getDay() {
+			return day;
+		}
+
+		public String getUzStart() {
+			return uzStart;
+		}
+
+		public String getUzEnd() {
+			return uzEnd;
+		}
+
+		public String getUzName() {
+			return uzName;
+		}
+
+		public String getUzType() {
+			return uzType;
+		}
+
+		public String getUzWeek() {
+			return uzWeek;
+		}
+
+		public String getUzGroup() {
+			return uzGroup;
+		}
+
+		public String getUzLecturer() {
+			return uzLecturer;
+		}
+
+		public String getUzRoomNumber() {
+			return uzRoomNumber;
+		}
+
 	}
 
 	public List<Event> getUzEventsList() {
 		return uzEventsList;
+	}
+
+	public ArrayList<Classes> getUzClassesList() {
+		return uzClassesList;
+	}
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
 	}
 }
