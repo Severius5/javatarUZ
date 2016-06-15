@@ -12,14 +12,36 @@ import biweekly.property.Summary;
 import biweekly.util.Duration;
 import iCal.data.Event;
 
+/**
+ * Parses a given data structures in order to add the new events to a list.
+ * 
+ * @author
+ * @version
+ * @see Date
+ * @see List
+ * @since
+ */
 public class ParseFile {
 
+	/** The event list. */
 	private List<Event> eventList;
 
+	/**
+	 * Instantiates a new parse file.
+	 *
+	 * @param eventList the event list
+	 */
 	public ParseFile(List<Event> eventList) {
 		this.eventList = eventList;
 	}
 
+	/**
+	 * Parses a specified ICal file to a text.
+	 *<p>
+	 * If parsing is successful an <code>eventList</code> method adds the new event filling it with just parsed data.
+	 * 
+	 * @param in the String
+	 */
 	public void readICal(String in) {
 		List<ICalendar> ical = Biweekly.parse(in).all();
 		if (!ical.isEmpty()) {
@@ -43,6 +65,13 @@ public class ParseFile {
 			System.err.println("No calendar in file");
 	}
 
+	/**
+	 * Parses a specified ICal file to a text.
+	 * <p>
+	 * If parsing is successful an <code>eventList</code> method adds a new event filling it with just parsed data.
+	 * 
+	 * @param in the String
+	 */
 	public void readXCal(String in) {
 		List<ICalendar> ical = Biweekly.parseXml(in).all();
 		if (!ical.isEmpty()) {
@@ -80,6 +109,13 @@ public class ParseFile {
 			System.err.println("No calendar in file");
 	}
 
+	/**
+	 * Checks if dates of the start and the end are the same as specified ones.
+	 *
+	 * @param start the start
+	 * @param end the end
+	 * @return true, if variables contains a specified values
+	 */
 	private boolean isEventAllDay(Date start, Date end) {
 		String dtStart = start.toString();
 		String dtEnd = end.toString();
