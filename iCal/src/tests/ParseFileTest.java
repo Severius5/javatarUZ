@@ -1,6 +1,5 @@
 package tests;
 
-
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
@@ -41,14 +40,38 @@ public class ParseFileTest {
 	}
 
 	@Test
+	public void testReadICal() {
+		List<Event> eventList = new LinkedList<Event>();
+		ParseFile parsefile = new ParseFile(eventList);
+
+		setFile("iCalFiles/iCal.ics"); // PLIK iCal.ics POSIADA 3 EVENTY
+		assertEquals(0, eventList.size());
+		parsefile.readICal(in);
+		assertEquals(3, eventList.size());
+		assertNotEquals(2, eventList.size());
+		eventList.clear();
+
+		setFile("iCalFiles/iCal2.ics"); // PLIK iCal2.ics POSIADA 1 EVENT
+		assertEquals(0, eventList.size());
+		parsefile.readICal(in);
+		assertEquals(1, eventList.size());
+		assertNotEquals(3, eventList.size());
+		eventList.clear();
+
+		setFile("iCalFiles/iCal3.ics"); // PLIK iCal3.ics POSIADA 15 EVENTÓW
+		assertEquals(0, eventList.size());
+		parsefile.readICal(in);
+		assertEquals(15, eventList.size());
+		assertNotEquals(14, eventList.size());
+		eventList.clear();
+	}
+
+	@Test
 	public void testReadXCal() {
 		List<Event> eventList = new LinkedList<Event>();
 		ParseFile parsefile = new ParseFile(eventList);
 		// TESTUJE 4 PLIKI .xml//
-		setFile("XMLFiles/test1.xml"); // PLIK
-																	// test1.xml
-																	// POSIADA 2
-																	// EVENTY
+		setFile("XMLFiles/test1.xml"); // PLIK test1.xml POSIADA 2 EVENTY
 		assertEquals(0, eventList.size());
 		parsefile.readXCal(in);
 		assertEquals(2, eventList.size());
@@ -57,30 +80,21 @@ public class ParseFileTest {
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("XMLFiles/test2.xml"); // PLIK
-																	// test2.xml
-																	// POSIADA 1
-																	// EVENT
+		setFile("XMLFiles/test2.xml"); // PLIK test2.xml POSIADA 1 EVENT
 		assertEquals(0, eventList.size());
 		parsefile.readXCal(in);
 		assertEquals(1, eventList.size());
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("XMLFiles/test3.xml"); // PLIK
-																	// test3.xml
-																	// POSIADA 1
-																	// EVENT
+		setFile("XMLFiles/test3.xml"); // PLIK test3.xml POSIADA 1 EVENT
 		assertEquals(0, eventList.size());
 		parsefile.readXCal(in);
 		assertEquals(1, eventList.size());
 		assertNotEquals(3, eventList.size());
 		eventList.clear();
 
-		setFile("XMLFiles/test4.xml"); // PLIK
-																	// test4.xml
-																	// POSIADA 1
-																	// EVENT
+		setFile("XMLFiles/test4.xml"); // PLIK test4.xml POSIADA 1 EVENT
 		assertEquals(0, eventList.size());
 		parsefile.readXCal(in);
 		assertEquals(1, eventList.size());
