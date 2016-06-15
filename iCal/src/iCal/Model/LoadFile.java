@@ -12,37 +12,86 @@ import javax.servlet.http.Part;
 
 import iCal.data.Event;
 
+/**
+ * Processes file to a calendar event loaded by user.
+ * <p>
+ * 
+ * @author
+ * @version
+ * @see BufferedReader
+ * @see List
+ * @since 
+ */
 @ManagedBean
 @SessionScoped
 public class LoadFile {
 
+	/** The parse file. */
 	private ParseFile parseFile;
+	
+	/** The uz parser. */
 	private UZScheduleParser uzParser;
+	
+	/** The file. */
 	private Part file;
+	
+	/** The url. */
 	private String url;
 
+	/**
+	 * Instantiates a new load file.
+	 *
+	 * @param list the list
+	 */
 	public LoadFile(List<Event> list) {
 		parseFile = new ParseFile(list);
 		uzParser = new UZScheduleParser(list);
 	}
 
+	/**
+	 * Gets the url.
+	 *
+	 * @return the url
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * Sets the url.
+	 *
+	 * @param url the new url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * Gets the file.
+	 *
+	 * @return the file
+	 */
 	public Part getFile() {
 		return file;
 	}
 
+	/**
+	 * Sets the file.
+	 *
+	 * @param file the new file
+	 */
 	public void setFile(Part file) {
 		this.file = file;
 
 	}
 
+	/**
+	 * Builds a string from given input stream.
+	 * <p>
+	 * Once the input stream is changed to the string it's parsed by a correct parser.
+	 * 
+	 * @throws IOException if fails to get an input stream
+	 */
 	public void load() {
 		if (file != null) {
 			try (InputStream input = file.getInputStream()) {
@@ -68,6 +117,9 @@ public class LoadFile {
 		}
 	}
 
+	/**
+	 * Connects to a parser using a specified url.
+	 */
 	public void loadUrl() {
 		if (url != null) {
 			uzParser.connect(url);
