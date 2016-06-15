@@ -1,0 +1,128 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID://JAVATAR UZ//
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Berlin
+X-LIC- LOCATION:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART:20160901T140000Z
+DTEND:20160901T153000Z
+SUMMARY:Systemy operacyjne II
+LOCATION:315 A-2
+DESCRIPTION:Systemy operacyjne II  Typ zajec: E Prowadzacy: dr in?. Kamil Mielcarek Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160630T130000Z
+DTEND:20160630T143000Z
+SUMMARY:Elementy sztucznej inteligencji
+LOCATION:115 A-2
+DESCRIPTION:Elementy sztucznej inteligencji  Typ zajec: E Prowadzacy: prof. dr hab. in?. Józef Korbicz Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160620T150000Z
+DTEND:20160620T163000Z
+SUMMARY:Systemy operacyjne II
+LOCATION:315 A-2
+DESCRIPTION:Systemy operacyjne II  Typ zajec: E Prowadzacy: dr in?. Kamil Mielcarek Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160617T113000Z
+DTEND:20160617T190000Z
+SUMMARY:J?zyk angielski II/J?zyk niemiecki II
+LOCATION:123 A-2; 127 A-2
+DESCRIPTION:J?zyk angielski II/J?zyk niemiecki II  Typ zajec: L Prowadzacy: mgr Jolanta B?k; mgr Wojciech Ciesinski Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160616T174000Z
+DTEND:20160616T191000Z
+SUMMARY:Elementy sztucznej inteligencji
+LOCATION:307 A-2
+DESCRIPTION:Elementy sztucznej inteligencji  Typ zajec: L Prowadzacy: dr in?. Mariusz Jacyno Grupa: B
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160615T190000Z
+DTEND:20160615T203000Z
+SUMMARY:In?ynieria oprogramowania
+LOCATION:315 A-2
+DESCRIPTION:In?ynieria oprogramowania  Typ zajec: W Prowadzacy: dr in?. Andrzej Marciniak Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160615T171500Z
+DTEND:20160615T184000Z
+SUMMARY:In?ynieria oprogramowania
+LOCATION:409 A-2
+DESCRIPTION:In?ynieria oprogramowania  Typ zajec: P Prowadzacy: dr in?. Andrzej Marciniak Grupa: B
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160615T152500Z
+DTEND:20160615T165000Z
+SUMMARY:Systemy operacyjne II
+LOCATION:315 A-2
+DESCRIPTION:Systemy operacyjne II  Typ zajec: W Prowadzacy: dr in?. Kamil Mielcarek Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T191500Z
+DTEND:20160614T204500Z
+SUMMARY:Programowanie wspó?bie?ne i rozproszone
+LOCATION:207 A-2
+DESCRIPTION:Programowanie wspó?bie?ne i rozproszone  Typ zajec: L Prowadzacy: dr in?. Tomasz Gratkowski Grupa: B
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T191500Z
+DTEND:20160614T205000Z
+SUMMARY:Bazy danych
+LOCATION:219 A-2
+DESCRIPTION:Bazy danych  Typ zajec: L Prowadzacy: dr in?. Jacek Tkacz Grupa: A
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T171500Z
+DTEND:20160614T184500Z
+SUMMARY:Programowanie wspó?bie?ne i rozproszone
+LOCATION:207 A-2
+DESCRIPTION:Programowanie wspó?bie?ne i rozproszone  Typ zajec: L Prowadzacy: dr in?. Tomasz Gratkowski Grupa: A
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T165500Z
+DTEND:20160614T184500Z
+SUMMARY:Systemy operacyjne II
+LOCATION:532 A-2
+DESCRIPTION:Systemy operacyjne II  Typ zajec: L Prowadzacy: dr in?. El?bieta Kawecka Grupa: B
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T151500Z
+DTEND:20160614T164500Z
+SUMMARY:Elementy sztucznej inteligencji
+LOCATION:115 A-2
+DESCRIPTION:Elementy sztucznej inteligencji  Typ zajec: W Prowadzacy: prof. dr hab. in?. Józef Korbicz Grupa:  
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T150830Z
+DTEND:20160614T150830Z
+SUMMARY:Title
+LOCATION:Location
+DESCRIPTION:Desc about this beautiful day.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20160614T131500Z
+DTEND:20160614T144500Z
+SUMMARY:Systemy operacyjne II
+LOCATION:532 A-2
+DESCRIPTION:Systemy operacyjne II  Typ zajec: L Prowadzacy: dr in?. El?bieta Kawecka Grupa: A
+END:VEVENT
+END:VCALENDAR

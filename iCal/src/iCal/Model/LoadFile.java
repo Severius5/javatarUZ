@@ -21,9 +21,6 @@ public class LoadFile {
 	private Part file;
 	private String url;
 
-	public LoadFile() {
-	}
-
 	public LoadFile(List<Event> list) {
 		parseFile = new ParseFile(list);
 		uzParser = new UZScheduleParser(list);
