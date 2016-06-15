@@ -21,9 +21,6 @@ public class LoadFile {
 	private Part file;
 	private String url;
 
-	public LoadFile() {
-	}
-
 	public LoadFile(List<Event> list) {
 		parseFile = new ParseFile(list);
 		uzParser = new UZScheduleParser(list);
@@ -74,7 +71,6 @@ public class LoadFile {
 	public void loadUrl() {
 		if (url != null) {
 			uzParser.connect(url);
-			url = null;
 		}
 	}
 

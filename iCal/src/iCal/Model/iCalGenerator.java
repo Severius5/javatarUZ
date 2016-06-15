@@ -64,13 +64,15 @@ public class iCalGenerator {
 	/** The builder object. */
 	private StringBuilder builder = new StringBuilder();
 
+	
+
 	/**
 	 * This method opens new calendar and adds first data to it, that is
 	 * <code>version</code>, <code>prodid</code>, and <code>timeZone</code>
 	 * using <code>append</code> method from {@link StringBuilder}.
 	 * <p>
 	 */
-	private void openCalendar() {
+	public void openCalendar() {
 		builder.append(calBegin);
 		builder.append(version);
 		builder.append(prodid);
@@ -90,7 +92,7 @@ public class iCalGenerator {
 	 * @param list
 	 */
 	// olewa true w ifie
-	private void createEvents(List<Event> list) {
+	public void createEvents(List<Event> list) {
 		for (Event e : list) {
 			if (e.isWholeDay()) {
 				// Date endDate = incrementDate(e.getDateEnd());
@@ -119,7 +121,7 @@ public class iCalGenerator {
 	 * This method ends calendar String by appending <code>calEnd</code> String
 	 * to the end of it.
 	 */
-	private void closeCalendar() {
+	public void closeCalendar() {
 		builder.append(calEnd);
 	}
 
@@ -193,40 +195,12 @@ public class iCalGenerator {
 		return iCal;
 	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public String getProdid() {
-		return prodid;
-	}
-
-	public String getCalBegin() {
-		return calBegin;
-	}
-
-	public String getCalEnd() {
-		return calEnd;
-	}
-
-	public String getEventBegin() {
-		return eventBegin;
-	}
-
-	public String getEventEnd() {
-		return eventEnd;
-	}
-
-	public String getTimeZone() {
-		return timeZone;
-	}
-
-	public String getiCal() {
-		return iCal;
-	}
-
 	public StringBuilder getBuilder() {
 		return builder;
+	}
+	
+	public void setBuilder(String string) {
+		builder.append(string);
 	}
 
 }
